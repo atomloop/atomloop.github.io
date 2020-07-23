@@ -326,70 +326,16 @@ Possible Hashs:
 
 <table>
   <thead><tr><th>Flag</th><th>Meaning</th></tr></thead>
-</table>
+  <tr><th>hachcat</th><th>software used to crack</th></tr>
+  <tr><th> -m </th><th> <a href="https://hashcat.net/wiki/doku.php?id=example_hashes">Hashmode </a> # number of the hash </th></tr>
+   <tr><th> -a </th><th> Attack Mode , 0 means dictnory attack </th></tr>
+   <tr><th>--show </th><th>To display the  cracked string </th></tr>
+   <tr><th>48bb6e862e54f2a795ffc4e541caed4d </th><th> Hash value to crack </th></tr>
+   <tr><th>rockyou.txt </th><th> a file which contains the list of words which is femilear  </th></tr>
+   </table>
 <p>
-  <pre><code class="language-bash">cracker@DESKTOP-TSGRLCH:/mnt/c/Users/pounr/Documents/Wind-sub$ hashcat -m 0 -a 0 -o cracked.txt 48bb6e862e54f2a795ffc4e541caed4d rockyou.txt  --force
-hashcat (v6.0.0) starting...
-
-You have enabled --force to bypass dangerous warnings and errors!
-This can hide serious problems and should only be done when debugging.
-Do not report hashcat issues encountered when using --force.
-OpenCL API (OpenCL 1.2 pocl 1.5, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
-=============================================================================================================================
-* Device #1: pthread-Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz, 5963/6027 MB (2048 MB allocatable), 8MCU
-
-Minimum password length supported by kernel: 0
-Maximum password length supported by kernel: 256
-
-Hashes: 1 digests; 1 unique digests, 1 unique salts
-Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
-Rules: 1
-
-Applicable optimizers:
-* Zero-Byte
-* Early-Skip
-* Not-Salted
-* Not-Iterated
-* Single-Hash
-* Single-Salt
-* Raw-Hash
-
-ATTENTION! Pure (unoptimized) backend kernels selected.
-Using pure kernels enables cracking longer passwords but for the price of drastically reduced performance.
-If you want to switch to optimized backend kernels, append -O to your commandline.
-See the above message to find out about the exact limits.
-
-Watchdog: Hardware monitoring interface not found on your system.
-Watchdog: Temperature abort trigger disabled.
-
-Host memory required for this attack: 66 MB
-
-Dictionary cache built:
-* Filename..: rockyou.txt
-* Passwords.: 14344392
-* Bytes.....: 139921507
-* Keyspace..: 14344385
-* Runtime...: 3 secs
-
-
-Session..........: hashcat
-Status...........: Cracked
-Hash.Name........: MD5
-Hash.Target......: 48bb6e862e54f2a795ffc4e541caed4d
-Time.Started.....: Thu Jul 23 16:53:48 2020, (1 sec)
-Time.Estimated...: Thu Jul 23 16:53:49 2020, (0 secs)
-Guess.Base.......: File (rockyou.txt)
-Guess.Queue......: 1/1 (100.00%)
-Speed.#1.........:   386.9 kH/s (1.05ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
-Recovered........: 1/1 (100.00%) Digests
-Progress.........: 180224/14344385 (1.26%)
-Rejected.........: 0/180224 (0.00%)
-Restore.Point....: 172032/14344385 (1.20%)
-Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
-Candidates.#1....: florida69 -> sandy09
-
-Started: Thu Jul 23 16:52:39 2020
-Stopped: Thu Jul 23 16:53:51 2020
+  <pre><code class="language-bash">Atom $ hashcat -m 0 -a 0 --show 48bb6e862e54f2a795ffc4e541caed4d rockyou.txt 
+48bb6e862e54f2a795ffc4e541caed4d:easy
  </code></pre>
 </p>
 
