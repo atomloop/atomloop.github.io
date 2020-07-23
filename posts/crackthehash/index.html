@@ -329,6 +329,7 @@ Possible Hashs:
   <tr><th>hachcat</th><th>software used to crack</th></tr>
   <tr><th> -m </th><th> <a href="https://hashcat.net/wiki/doku.php?id=example_hashes">Hashmode </a> # number of the hash </th></tr>
    <tr><th> -a </th><th> Attack Mode , 0 means dictnory attack </th></tr>
+   <tr><th> -o </th><th> to save hashed result into which format we need </th></tr>
    <tr><th>--show </th><th>To display the  cracked string </th></tr>
    <tr><th>48bb6e862e54f2a795ffc4e541caed4d </th><th> Hash value to crack </th></tr>
    <tr><th>rockyou.txt </th><th> a file which contains the list of words which is femilear  </th></tr>
@@ -338,8 +339,223 @@ Possible Hashs:
 48bb6e862e54f2a795ffc4e541caed4d:easy
  </code></pre>
 </p>
+<hr/>
+  <h3> #2 CBFDAC6008F9CAB4083784CBD1874F76618D2A97 </h3>
+  <p> first we need identify hash type and then we need to crack </p>
+   
+   <pre>
+  <code class="language-bash"> Atom $ hash-identifier
+   #########################################################################
+   #     __  __                     __           ______    _____           #
+   #    /\ \/\ \                   /\ \         /\__  _\  /\  _ `\         #
+   #    \ \ \_\ \     __      ____ \ \ \___     \/_/\ \/  \ \ \/\ \        #
+   #     \ \  _  \  /'__`\   / ,__\ \ \  _ `\      \ \ \   \ \ \ \ \       #
+   #      \ \ \ \ \/\ \_\ \_/\__, `\ \ \ \ \ \      \_\ \__ \ \ \_\ \      #
+   #       \ \_\ \_\ \___ \_\/\____/  \ \_\ \_\     /\_____\ \ \____/      #
+   #        \/_/\/_/\/__/\/_/\/___/    \/_/\/_/     \/_____/  \/___/  v1.2 #
+   #                                                             By Zion3R #
+   #                                                    www.Blackploit.com #
+   #                                                   Root@Blackploit.com #
+   #########################################################################
+--------------------------------------------------
+ HASH: CBFDAC6008F9CAB4083784CBD1874F76618D2A97
 
+Possible Hashs:
+[+] SHA-1
+[+] MySQL5 - SHA-1(SHA-1($pass))
+</code>
+</pre>
+<p> SHA-1 is the hash type . to find th hash mode number (number specifyed on the every hash type ) <pre><code class="kali-linux"> Atom $ hashcat --help | grep 'SHA1'
+    100 | SHA1                                             | Raw Hash
+    150 | HMAC-SHA1 (key = $pass)                          | Raw Hash, Authenticated
+    160 | HMAC-SHA1 (key = $salt)                          | Raw Hash, Authenticated
+  12000 | PBKDF2-HMAC-SHA1                                 | Generic KDF
+  12001 | Atlassian (PBKDF2-HMAC-SHA1)                     | Generic KDF
+   5400 | IKE-PSK SHA1                                     | Network Protocols
+   7300 | IPMI2 RAKP HMAC-SHA1                             | Network Protocols
+  22600 | Telegram Desktop App Passcode (PBKDF2-HMAC-SHA1) | Network Protocols
+  11200 | MySQL CRAM (SHA1)                                | Network Protocols
+   8100 | Citrix NetScaler (SHA1)                          | Operating System
+   9800 | MS Office <= 2003 $3/$4, SHA1 + RC4              | Documents
+   9810 | MS Office <= 2003 $3, SHA1 + RC4, collider #1    | Documents
+   9820 | MS Office <= 2003 $3, SHA1 + RC4, collider #2    | Documents
+  15500 | JKS Java Key Store Private Keys (SHA1)           | Password Managers
+  13300 | AxCrypt in-memory SHA1                           | Archives
+  18100 | TOTP (HMAC-SHA1)                                 | One-Time Passwords
+</code></pre></p>
+<p> so we finded hash mode number . lets begin to crack   </p>
+ <pre>
+  <code class="language-bash"> Atom $ hashcat -m 100 -a 0 -o cracked.txt CBFDAC6008F9CAB4083784CBD1874F76618D2A97 rockyou.txt
+hashcat (v6.0.0) starting...
+
+OpenCL API (OpenCL 1.2 pocl 1.5, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+=============================================================================================================================
+* Device #1: pthread-Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz, 5963/6027 MB (2048 MB allocatable), 8MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Applicable optimizers:
+* Zero-Byte
+* Early-Skip
+* Not-Salted
+* Not-Iterated
+* Single-Hash
+* Single-Salt
+* Raw-Hash
+
+ATTENTION! Pure (unoptimized) backend kernels selected.
+Using pure kernels enables cracking longer passwords but for the price of drastically reduced performance.
+If you want to switch to optimized backend kernels, append -O to your commandline.
+See the above message to find out about the exact limits.
+
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory required for this attack: 66 MB
+
+Dictionary cache hit:
+* Filename..: rockyou.txt
+* Passwords.: 14344385
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: SHA1
+Hash.Target......: cbfdac6008f9cab4083784cbd1874f76618d2a97
+Time.Started.....: Thu Jul 23 18:57:37 2020 (1 sec)
+Time.Estimated...: Thu Jul 23 18:57:38 2020 (0 secs)
+Guess.Base.......: File (rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:    62807 H/s (0.36ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 8192/14344385 (0.06%)
+Rejected.........: 0/8192 (0.00%)
+Restore.Point....: 0/14344385 (0.00%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidates.#1....: 123456 -> whitetiger
+
+Started: Thu Jul 23 18:57:20 2020
+Stopped: Thu Jul 23 18:57:39 2020
+
+Atom $ cat cracked.txt
+cbfdac6008f9cab4083784cbd1874f76618d2a97:password123
+</code>
+</pre>
+
+<h3> #3 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032</h3>
+
+<p>same method what we performed previous steps</p>
+
+ <pre>
+  <code class="language-bash">Atom $ hash-identifier
+   #########################################################################
+   #     __  __                     __           ______    _____           #
+   #    /\ \/\ \                   /\ \         /\__  _\  /\  _ `\         #
+   #    \ \ \_\ \     __      ____ \ \ \___     \/_/\ \/  \ \ \/\ \        #
+   #     \ \  _  \  /'__`\   / ,__\ \ \  _ `\      \ \ \   \ \ \ \ \       #
+   #      \ \ \ \ \/\ \_\ \_/\__, `\ \ \ \ \ \      \_\ \__ \ \ \_\ \      #
+   #       \ \_\ \_\ \___ \_\/\____/  \ \_\ \_\     /\_____\ \ \____/      #
+   #        \/_/\/_/\/__/\/_/\/___/    \/_/\/_/     \/_____/  \/___/  v1.2 #
+   #                                                             By Zion3R #
+   #                                                    www.Blackploit.com #
+   #                                                   Root@Blackploit.com #
+   #########################################################################
+--------------------------------------------------
+ HASH: 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032
+
+Possible Hashs:
+[+] SHA-256
+[+] Haval-256
+</code>
+</pre>
+
+<table>
+  <thead><tr><th>Flag</th><th>Meaning</th></tr></thead>
   
+   <tr><th> -o </th><th> output (to save hashed result into which format we need )</th></tr>
+   <tr><th> cracked.txt </th><th> filename and format to save  </th></tr>
+   
+<p>
+<pre>
+  <code class="language-bash">Atom $ hashcat -m 1400 -a 0 -o cracked.txt 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032 rockyou.txt
+hashcat (v6.0.0) starting...
+
+OpenCL API (OpenCL 1.2 pocl 1.5, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+=============================================================================================================================
+* Device #1: pthread-Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz, 5963/6027 MB (2048 MB allocatable), 8MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Applicable optimizers:
+* Zero-Byte
+* Early-Skip
+* Not-Salted
+* Not-Iterated
+* Single-Hash
+* Single-Salt
+* Raw-Hash
+
+ATTENTION! Pure (unoptimized) backend kernels selected.
+Using pure kernels enables cracking longer passwords but for the price of drastically reduced performance.
+If you want to switch to optimized backend kernels, append -O to your commandline.
+See the above message to find out about the exact limits.
+
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory required for this attack: 66 MB
+
+Dictionary cache hit:
+* Filename..: rockyou.txt
+* Passwords.: 14344385
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: SHA2-256
+Hash.Target......: 1c8bfe8f801d79745c4631d09fff36c82aa37fc4cce4fc94668...b63032
+Time.Started.....: Thu Jul 23 19:09:53 2020 (1 sec)
+Time.Estimated...: Thu Jul 23 19:09:54 2020 (0 secs)
+Guess.Base.......: File (rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:  2008.2 kH/s (0.89ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 8192/14344385 (0.06%)
+Rejected.........: 0/8192 (0.00%)
+Restore.Point....: 0/14344385 (0.00%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidates.#1....: 123456 -> whitetiger
+
+Started: Thu Jul 23 19:09:36 2020
+Stopped: Thu Jul 23 19:09:55 2020
+
+
+Atom $ cat cracked.txt
+1c8bfe8f801d79745c4631d09fff36c82aa37fc4cce4fc946683d7b336b63032:letmein
+</code>
+</pre>
+
+
+
+
+
+
+
+
 
 
     <footer class="footer">
