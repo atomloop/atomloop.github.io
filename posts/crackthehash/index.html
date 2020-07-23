@@ -365,7 +365,7 @@ Possible Hashs:
 [+] MySQL5 - SHA-1(SHA-1($pass))
 </code>
 </pre>
-<p> SHA-1 is the hash type . to find th hash mode number (number specifyed on the every hash type ) <pre><code class="kali-linux"> Atom $ hashcat --help | grep 'SHA1'
+<p> SHA-1 is the hash type . to find the hash mode number (number specifyed on the every hash type ) <pre><code class="kali-linux"> Atom $ hashcat --help | grep 'SHA1'
     100 | SHA1                                             | Raw Hash
     150 | HMAC-SHA1 (key = $pass)                          | Raw Hash, Authenticated
     160 | HMAC-SHA1 (key = $salt)                          | Raw Hash, Authenticated
@@ -481,7 +481,8 @@ Possible Hashs:
   
    <tr><th> -o </th><th> output (to save hashed result into which format we need )</th></tr>
    <tr><th> cracked.txt </th><th> filename and format to save  </th></tr>
-   
+</table>
+
 <p>
 <pre>
   <code class="language-bash">Atom $ hashcat -m 1400 -a 0 -o cracked.txt 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032 rockyou.txt
@@ -548,6 +549,26 @@ Atom $ cat cracked.txt
 1c8bfe8f801d79745c4631d09fff36c82aa37fc4cce4fc946683d7b336b63032:letmein
 </code>
 </pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
