@@ -173,7 +173,7 @@
         
         <p> In this room . we need to crack the different types of hashes . To crack the hash .first we need to find what type of the hash it is . and based upon the type of hash we need to crack it. </p>
 
-        <p> this are list of tools which uses to crack the hash </p>
+        <p> this are list of tools which uses to identify and crack the hash </p>
 
         <ul>
 <li><a href="https://tools.kali.org/password-attacks/hash-identifier"><strong>hash-identifier</strong></a></li>
@@ -217,7 +217,7 @@ Possible Hashs:
 </code>
 </pre>
 
-<p> we identified what type of the hash it is . next we need to crack this . there are number of tool to crack the hashes . hear iam using hashcat tool  which is preinstalled on kali-linux 
+<p> we identified what type of the hash it is . next we need to crack this . there are number of tool to crack the hashes . heir iam using hashcat tool  which is preinstalled on kali-linux 
 </p>
 
 <table>
@@ -622,7 +622,7 @@ Candidates.#1....: walo90 -> waitex
 
 Salt: tryhackme
 </h4>
-<p> from hint HMAC-SHA1  and our another hint is all the flag is on the clasic rockyou.txt file . i copied hash and salt in the format of   <hash>:<salt>   file name is tryhackme.txt  </p>
+<p> from hint HMAC-SHA1  and our another hint is all the flag is on the clasic rockyou.txt file . i copied hash and salt in the format of    hash:salt  e5d8870e5bdd26602cab8dbe07a942c8669e56d6:tryhackme  file name is tryhackme.txt  </p>
 <pre><code class="language-bash">C:\Users\pounr\Documents\hashcat-6.0.0>hashcat -m 160 tryhackme.txt rockyou.txt
 hashcat (v6.0.0) starting...
 
