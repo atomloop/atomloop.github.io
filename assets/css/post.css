@@ -6,7 +6,7 @@
   margin: 20px auto;
 
   @media (--tablet) {
-    max-width: 660px;
+    max-width: 950px;
   }
 
   &:not(:last-of-type) {
@@ -57,8 +57,8 @@
   &-cover {
     border-radius: 8px;
     margin: 40px -50px;
-    width: 660px;    
-    max-width: 860px;
+    width: 900px;    
+    max-width: 950px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, .15);
 
     @media (--tablet) {
