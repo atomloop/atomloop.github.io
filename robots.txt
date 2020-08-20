@@ -1,4 +1,4 @@
-Sitemap: https://sckull.github.io/sitemap.xml
+Sitemap: https://atomloop.github.io/sitemap.xml
 User-agent: Mediapartners-Google
 Disallow:
 User-agent: *
