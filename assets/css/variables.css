@@ -15,11 +15,11 @@
 
   /* variables for js, must be the same as these in @custom-media queries */
   --phoneWidth: (max-width: 684px);
-  --tabletWidth: (max-width: 1080px);
+  --tabletWidth: (max-width: 950px);
 }
 
 @custom-media --phone (width < 684px);
-@custom-media --tablet (width < 1080px);
+@custom-media --tablet (width < 950px);
 
 @define-mixin greater-icon $stroke-width: 3px, $width: .95rem, $height: 100% {
   .greater-icon {
