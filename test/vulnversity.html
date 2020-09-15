@@ -251,13 +251,13 @@ To gain remote access to this machine, follow these steps:
 <br>
 1. verify that you are connected to tryhackme network using openvpn,  to conform that you can visit http://10.10.10.10 your will find your vpn tunnel ip . if you will not found you are not connected to tryhackme network.
 <br>
-2.In this Task we need to compromise webserver using php-reverse-shell, php-reverse-shell is a srcipt which helps to gain access the target shell . to do that Upload this script to somewhere in the web root then run it by accessing the appropriate URL in your browser.  The script will open an outbound TCP connection from the webserver to a host and port of your choice.  Bound to this TCP connection will be a shell.
+2.In this Task we need to compromise webserver using php-reverse-shell, php-reverse-shell is a srcipt which helps to gain access the target Machine's shell . to do that Upload this script to somewhere in the web root ,then run it by accessing the appropriate URL in your browser.  The script will open an outbound TCP connection from the webserver to a host and port of your choice.  Bound to this TCP connection will be a shell.
 <br>
 
 This will be a proper interactive shell in which you can run interective programs like telnet, ssh and su.  It differs from web form-based shell which allow you to send a single command, then return you the output.
 
 you can found this php-revese-shell <a href="http://pentestmonkey.net/tools/web-shells/php-reverse-shell">here</a>
-or if you are a kali user you will find this script on this directory  /usr/share/webshells, make a copy of it on other directory and edit as you want. make sure that you need to modify the source code to indicate where you want the reverse shell thrown back to. 
+or if you are a kali user you will find this script on this directory  /usr/share/webshells/php, make a copy of it on other directory and edit as you want. make sure that you need to modify the source code to indicate where you want the reverse shell thrown back to. 
 <br>
 <h5> Edit the following lines of php-reverse-shell.php:</h5>
 
@@ -270,16 +270,24 @@ $port = 1234;       // CHANGE THIS
 this means that the format of the script we uploaded was not accepted by our target. so you need to find which format is supported by our target to upload reverce-shell-script . you can do it manually or you can use  burpsuit.
 on berpsuit intercept the form . <img src="https://atomloop.github.io/image/tryhackme/vulnversity/2.png">
 <br>
-you will find  the reversh-shell.php under filename option. Right click  the window and select the option<b> send to intruder </b>.  now you are in intruder window . select the  position tab add position for dictnoary attack using $$ symbul . <img src="https://atomloop.github.io/image/tryhackme/vulnversity/3.png"> if you find any dificulty please learn how intruder <a href="https://portswigger.net/burp/documentation/desktop/tools/intruder/using"> works </a> <br>
-After that under the payload option select the most common extension or you can add extension as per your guess . then you can lanch attack by selecting <b>start attack</b> option.  <img src="https://atomloop.github.io/image/tryhackme/vulnversity/4.png">here i mensioned few extension which is most common . you can find  values and its diffrence under length tab  <img src="https://atomloop.github.io/image/tryhackme/vulnversity/5.png"> a value of .phtml is differ from other extensions . may be this is the extension our target webserver support . lets try to upload reverse-shell uousing this format . but before that we need to get ready for catch the reverse-shell 
+you will find  the reversh-shell.php under filename option. Right click  the window and select the option<b> send to intruder </b>.  go to the intruder window . select the  position tab add position for dictnoary attack using $$ symbul . <img src="https://atomloop.github.io/image/tryhackme/vulnversity/3.png"> if you find any dificulty please learn how intruder <a href="https://portswigger.net/burp/documentation/desktop/tools/intruder/using"> works </a> <br>
+After that under the payload option select the most common extension or you can add extension as per your guess . then you can lanch attack by selecting <b>start attack</b> option.  <img src="https://atomloop.github.io/image/tryhackme/vulnversity/4.png">here i mensioned few extension which is most common . you can find  values and its diffrence under length tab  <img src="https://atomloop.github.io/image/tryhackme/vulnversity/5.png"> a value of .phtml is differ from other extensions , may be this is the extension our target webserver support . lets try to upload reverse-shell using this format . but before that we need to get ready for catch the reverse-shell 
 
 <h2>Get Ready to catch the reverse shell</h2>
 
 Start a TCP listener on a host and port that will be accessible by the web server.  Use the same port here as you specified in the script (4444 in this example):
 
+
 $ nc -lvnp 4444
 
 
+<table>
+  <thead><tr><td>nc flag</td><td>Description</td></thead></tr></thead>
+  <tr><td>-l</td><td>Listen mode, for inbound connects</td></tr>
+  <tr><td>-v</td><td> Verbose</td></tr>
+  <tr><td>-n</td><td> Suppress name/port resolutions</td></tr>
+  <tr><td>-p <x></td><td> Specify local port for remote connects</td></tr>
+</table>
 <pre><code class="language-bash">atom@ubuntu:~/Desktop$ nc -lvnp 4444
 Listening on 0.0.0.0 4444
 </code></pre></p>
