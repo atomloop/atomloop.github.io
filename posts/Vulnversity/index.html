@@ -335,7 +335,14 @@ $ cat user.txt
 <p>it’s init system to prepare user space after boot and ready the system for operation.and includes features like on-demand starting of daemons, mount and automount point maintenance, snapshot support, and processes tracking using Linux control groups. here is a great article about <a href="https://www.linode.com/docs/quick-answers/linux-essentials/what-is-systemd/">systemd</a></p>
 
 
+<p> there is a great article to explore about <a href="https://gtfobins.github.io/gtfobins/systemctl/#suid"> prev esc</a> to undastand deep about this escalation these <a href="https://unicornsec.com/home/tryhackme-vulnversity">Writeups</a>  may help you </p>
+<br>
 
+The first thing we need to is create an environment variable! , environment variable called “eop”  , <code>mktemp command </code> to create a temporary file as a systemd service unit file <code>eop=$(mktemp).service </code>
+<br>
+What we have done here is to simply create a service which will be executing "BASH", then reading the flag from the root directory and then writing it in the flag (file) in /tmp/output directory. for that run this unit file using systemctl.
+<br>
+Now we can find the "flag" file in the /tmp/output directory containing the flag!
 
 <pre><code lang="language-bash">kali@kali:/tmp$ nc -nvlp 4444
 listening on [any] 4444 ...
