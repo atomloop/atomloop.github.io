@@ -340,9 +340,6 @@ $ cat user.txt
 
 The first thing we need to is create an environment variable! , environment variable called “eop”  , <code>mktemp command </code> to create a temporary file as a systemd service unit file <code>eop=$(mktemp).service </code>
 <br>
-What we have done here is to simply create a service which will be executing "BASH", then reading the flag from the root directory and then writing it in the flag (file) in /tmp/output directory. for that run this unit file using systemctl.
-<br>
-Now we can find the "flag" file in the /tmp/output directory containing the flag!
 
 <pre><code lang="language-bash">kali@kali:/tmp$ nc -nvlp 4444
 listening on [any] 4444 ...
@@ -381,6 +378,10 @@ $ cat output
 a58ff8579f0a9270368d33a9966c7fd5
 $ 
 </code></pre>
+What we have done here is to simply create a service which will be executing "BASH", then reading the flag from the root directory and then writing it in the flag (file) in /tmp/output directory. for that run this unit file using systemctl.
+<br>
+Now we can find the "flag" file in the /tmp/output directory containing the flag!
+
 
   
 
