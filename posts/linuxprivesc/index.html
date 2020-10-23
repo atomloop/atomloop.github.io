@@ -78,7 +78,7 @@
     
 
   <div class="post">
-    <h2 class="post-title">Try Hack Me - Crack the hash </h4>
+    <h2 class="post-title">Try Hack Me - Linux PrevEsc </h4>
     <div class="post-meta">
       
         <span class="post-date">
@@ -88,10 +88,10 @@
       
       <span class="post-author">— Written by atomloop</span>
       
-        <span class="post-read-time">— 11 min read</span>
+        <span class="post-read-time">— 17 min read</span>
 
     
-         <img src="https://atomloop.github.io/image/tryhackme/pentesting/cover.png" class="post-cover center" />
+         <img src="https://atomloop.github.io/image/tryhackme/linuxprevesc/cover.png" class="post-cover center" />
 
 
          <table>
@@ -138,7 +138,7 @@
 </div>
   
  
-</style></head><body><article id="6db1591c-bfeb-4930-9d09-924234b511e6" class="page sans"><header><h1 class="page-title">Linux PrivEsc</h1><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Column</th><td>on the waay</td></tr></tbody></table></header><div class="page-body"><p id="1b59c4ac-4334-437a-92aa-32a0d61160b0" class="">Linux PrivEsc</p><p id="78ef85f4-b142-4e4c-b1ac-f8d6c3c7ad1c" class="">lets us see some intro about privilege escalation,Privileges means what a user is permitted to do,Privilege escalation means escalation(gain more permissions) then what privilege is allocated. </p><p id="b031770a-c3bd-4e2a-9ceb-79e0a24dcaec" class="">In  UNIX os every single file and folder stored on the hard drive has a set of permissions associated with it, which says who is allowed to do what with the file.</p><p id="e8281b30-00b7-4095-b3d8-0457573f8d9f" class="">It is just to understand the basic fact that a user can not access (read/write/execute) files that he is not permitted to access. However, the superuser(root) can access all the files which are present on the system. In order to change any important configuration or perform any further attack, first, we need to get root access on any Linux based system.</p><p id="28e69c64-ff41-43da-ae48-ed13a4136dc0" class="">
+</style></head><body><article id="6db1591c-bfeb-4930-9d09-924234b511e6" class="page sans"><header><h1 class="page-title">Linux PrivEsc</h1></header><div class="page-body"><p id="1b59c4ac-4334-437a-92aa-32a0d61160b0" class="">Linux PrivEsc</p><p id="78ef85f4-b142-4e4c-b1ac-f8d6c3c7ad1c" class="">lets us see some intro about privilege escalation,Privileges means what a user is permitted to do,Privilege escalation means escalation(gain more permissions) then what privilege is allocated. </p><p id="b031770a-c3bd-4e2a-9ceb-79e0a24dcaec" class="">In  UNIX os every single file and folder stored on the hard drive has a set of permissions associated with it, which says who is allowed to do what with the file.</p><p id="e8281b30-00b7-4095-b3d8-0457573f8d9f" class="">It is just to understand the basic fact that a user can not access (read/write/execute) files that he is not permitted to access. However, the superuser(root) can access all the files which are present on the system. In order to change any important configuration or perform any further attack, first, we need to get root access on any Linux based system.</p><p id="28e69c64-ff41-43da-ae48-ed13a4136dc0" class="">
 </p><p id="f03f9bbf-379c-453c-bc03-ab2cd52e82c2" class="">Why do we need to perform privilege escalation?</p><ul id="9db03dc4-33b1-4471-aab6-acb5a7dcbff7" class="bulleted-list"><li><strong>Read/Write any sensitive file</strong></li></ul><ul id="7836c058-990e-4c95-8e19-a538bbc76236" class="bulleted-list"><li><strong>Persist easily between reboots</strong></li></ul><ul id="ff584a1f-b5c8-4152-a943-ee84e3c5ce01" class="bulleted-list"><li><strong>Insert a permanent backdoor</strong></li></ul><p id="89a55662-0cf7-400a-95a9-44d3149541cf" class="">
 </p><p id="d2183568-16a0-4330-82ac-12b1bec324f2" class="">Privilege escalation  are two types,horizontal and vertical:- </p><p id="8aa41e6c-222d-4452-a0f6-9fa78d7c95fc" class=""><strong>horizontal privilege escalation</strong>  is gaining  access to the user who has same permission has a current user.</p><p id="e88d8502-cdc8-4e5f-99a5-7b1b469c916e" class=""><strong>Vertical privilege escalation</strong> is gaining access to user who has higher privilege then current user. </p><p id="3fa5d3e5-8047-4449-8bab-feb4132ed1ee" class="">
 </p><h3 id="d38b896c-2cac-4d86-84c0-188401a7a842" class=""><mark class="highlight-teal">[Task 1] Deploy the Vulnerable Debian VM</mark></h3><p id="aca31fcf-0a88-4aaf-bf10-c09745d6dfc9" class="">This room is aimed at walking you through a variety of Linux Privilege Escalation techniques. let&#x27;s start with deploying the machine. make sure that you are connected to VPN. you can log in to the target machine using </p><pre id="43c4daf6-3e5f-4060-a472-1690459a0533" class="code"><code>ssh@machine IP 
