@@ -521,7 +521,6 @@ if we can write to a program or script which gets run as part of cron job, we ca
 
 <b>wildcards</b> when a wildcard character (*) is provided to command as part of an argument,  the shell will first perform filename expansion(also known as gobbling) on the wildcard.
 
-<b>
 
 This process replaces the wildcard with a space-separated list of the file and director,
 
@@ -879,19 +878,27 @@ user@debian:~$
 user@debian:~$ /usr/local/bin/suid-env2
 root@debian:~#</code></pre>
 <b>bash gives first preority to funsctions and shell variables then binaryes (exectuble program i.e service)</b>
+
 <h3 style="color: green"> Task 15 SUID / SGID Executables - Abusing Shell Features (#2) </h3>
 
 <p>Bash has a debugging mode which can be enabled with the –x command line option, or by modifying the SHELLOPTSenvironment variable to include xtrace. By default, SHELLOPTS is read only, however the envcommand allows SHELLOPTS to be set.When in debugging mode, Bash uses the environment variable PS4 to display an extra prompt for debug statements. This variable can include an embedded command, which will execute every time it is shown.
 
+<br>
+
 If a SUID file runs another program via Bash (e.g. by using system()) these environment variables can be inherited.If an SUID file is being executed, this command will execute with the privileges of the file owner. in Bash versions 4.4 and above, the PS4 environment variable is not inherited by shells running as root.
+
+<br>
 
 Find SUID/SGID files on the target:
 
 <code>find / -type f -a \( -perm -u+s-o -perm -g+s\) -exec ls -l {} \; 2> /dev/null</code>
 
+<br>
+
 Note: This will not work on Bash versions 4.4 and above.
 
 any binary running command with SHELLOPTS=xtrace it will run as a debugging mode  output will be large</p>
+<br>
 
 <pre><code class="language-bash">user@debian:~$ env -i SHELLOPTS=xtrace /usr/local/bin/suid-env2                                                                                                                                               
 + /usr/sbin/service apache2 start
@@ -974,7 +981,6 @@ atombash-4.1# </code></pre>
 
 <h3 style="color: green"> Task 16 Passwords & Keys - History Files </h3>
 
-<p>Task 16 Passwords & Keys - History Files</p>
 
 <pre><code class="language-bash"> user@debian:~$ history
     1  ls -al
